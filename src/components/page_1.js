@@ -7,9 +7,12 @@ class Page1 extends React.Component {
     super();
 
   }
+  componentDidUpdate(){
+    this.refs.header_text.style.setProperty("--play", "running");
+  }
 
   componentDidMount(){
-    this.refs.header_text.style.setProperty("--play", "running");
+    // this.refs.header_text.style.setProperty("--play", "running");
   }
 
   render() {

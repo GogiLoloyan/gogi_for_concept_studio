@@ -12,6 +12,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      ready: false
+    };
     this.page_2 = React.createRef();
     this.video = React.createRef();
     this.cursor = React.createRef();
@@ -20,6 +23,8 @@ class App extends React.Component {
   componentDidMount() {
     this.generator = handleOnMouseWheel.bind(this)();
     window.addEventListener("wheel", this.stepByStep, { once: true });
+
+    this.setState({ ready: true });
   }
 
   stepByStep = e => {
@@ -27,15 +32,16 @@ class App extends React.Component {
   };
 
   handlCursor = e => {
- 
-    this.cursor.current.setAttribute("style", `top: ${e.nativeEvent.pageY - 7}px; left: ${e.nativeEvent.pageX - 7}px; `)
-  
+    this.cursor.current.setAttribute(
+      "style",
+      `top: ${e.nativeEvent.pageY - 7}px; left: ${e.nativeEvent.pageX - 7}px; `
+    );
   };
 
   render() {
     return (
       <div className="main" onMouseMove={this.handlCursor}>
-        <Page1 />
+        <Page1 ready={this.state.ready} />
         <Video myRef={this.video} />
         <Page2 myRef={this.page_2} />
         <Page3 />
