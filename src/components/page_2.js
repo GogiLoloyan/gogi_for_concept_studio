@@ -1,6 +1,6 @@
 import React from "react";
 import { scrollVertically2 } from "./helper/halper";
-import { images, man, images_hover } from "../pictures/list_body/images.js";
+import { images, man, images_hover } from "../pictures/list_body_1/images.js";
 
 class Page2 extends React.Component {
   constructor(props) {
@@ -29,7 +29,10 @@ class Page2 extends React.Component {
       .then(data => this.setState({ data }))
       .catch(error => this.setState({ error: error.message }));
 
-      this.description.current.addEventListener("mousewheel", scrollVertically2.bind(this.description.current) )
+    this.description.current.addEventListener(
+      "mousewheel",
+      scrollVertically2.bind(this.description.current)
+    );
   }
 
   handleMouseEnter(id) {
