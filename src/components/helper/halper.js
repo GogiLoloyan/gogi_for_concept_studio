@@ -42,9 +42,6 @@ function* handleOnMouseWheel() {
   yield;
 
   setTimeout(() => _html.addEventListener("mousewheel",scrollVertically.bind(_html)),200);
-
-  
-  yield;
 }
 
 //*********************************************************
@@ -76,7 +73,7 @@ function scrollHorizontally(delta, e) {
 function scrollVertically(e) {
   if (timeStamp + 100 > e.timeStamp) {
     timeStamp = e.timeStamp;
-  } else {
+  } else {  
     timeStamp = e.timeStamp;
 
     const down = e.wheelDelta > 0;

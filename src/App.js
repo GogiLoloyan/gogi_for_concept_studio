@@ -27,11 +27,9 @@ class App extends React.Component {
   };
 
   handlCursor = e => {
-    // this.cursor.current.style.top = e.nativeEvent.pageX;
-    // this.cursor.current.style.left = e.nativeEvent.pageY;
+ 
     this.cursor.current.setAttribute("style", `top: ${e.nativeEvent.pageY - 7}px; left: ${e.nativeEvent.pageX - 7}px; `)
-    // console.dir(e.nativeEvent.pageX);
-    // console.dir(this.cursor);
+  
   };
 
   render() {
