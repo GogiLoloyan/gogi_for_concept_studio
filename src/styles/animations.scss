@@ -1,0 +1,41 @@
+@mixin letter-animate($from, $to, $d, $s, $k: 15) {
+  @for $j from $from through $to {
+    @keyframes let-animate_#{$j} {
+      0% {
+        opacity: 0;
+      }
+      @for $i from 1 through $k {
+        #{$i/$k * 60%} {
+          opacity: #{random(50) / (70 * 50 / $i)};
+        }
+      }
+      @for $i from $k through $k + 7 {
+        #{$i/($k + 10) * 100%} {
+          opacity: #{random(50) / (20 * 50 / $i)};
+        }
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    &:nth-child(#{$j}) {
+      animation: let-animate_#{$j}
+        $d
+        cubic-bezier(0.5, 1, 0.89, 1)
+        $s
+        var(--play, paused)
+        forwards;
+    }
+  }
+}
+
+
+@keyframes animateCursor {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.6);
+  }
+}

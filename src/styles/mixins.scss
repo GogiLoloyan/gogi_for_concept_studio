@@ -1,0 +1,38 @@
+@mixin text-border($pixel: 1px, $color: $light-blue) {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: $pixel $color;
+  }
+  
+  @mixin text-style($s: 12px, $w: normal, $ls: normal, $lh: normal, $op: 1) {
+    font-size: $s;
+    font-weight: $w;
+    letter-spacing: $ls;
+    line-height: $lh;
+    opacity: $op;
+  }
+  
+  @mixin absolute($l, $lX, $t: auto, $tY: 0) {
+    position: absolute;
+    left: $l;
+    top: $t;
+    transform: translate($lX, $tY);
+  }
+  
+  @mixin mq($width) {
+    @if $width == "large" {
+      @media screen and (max-width: $mq-large) {
+        @content;
+      }
+    } @else if $width == "medium" {
+      @media screen and (max-width: $mq-medium) {
+        @content;
+      }
+    } @else if $width == "small" {
+      @media screen and (max-width: $mq-small) {
+        @content;
+      }
+    } @else {
+      @error 'No such #{$width} screen';
+    }
+  }
+  

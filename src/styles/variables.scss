@@ -1,0 +1,21 @@
+$mq-large: 1320px;
+$mq-medium: 1024px;
+$mq-small: 755px;
+
+$grid-border: 1px solid rgba(0, 226, 255, 0.1);
+$white: white;
+$light-blue: #00e2ff;
+
+%common {
+  position: relative;
+  height: 100vh;
+  background: #000e1a
+    linear-gradient(to right, rgba(1, 155, 224, 0.34), rgba(1, 76, 137, 0.34));
+  scroll-snap-align: start;
+}
+
+%paragraph{
+  color: $white;
+  font-size: 14px;
+  opacity: 0.7;
+}

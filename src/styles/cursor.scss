@@ -1,0 +1,21 @@
+.cursor {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  color: transparent;
+  border: 3px solid $light-blue;
+  border-radius: 50%;
+  transition: all ease-out 200ms;
+  animation: curs 1s infinity alternate;
+  display: none;
+}
+
+
+@keyframes curs {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0.6);
+    }
+  }

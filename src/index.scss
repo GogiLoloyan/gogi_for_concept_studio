@@ -1,0 +1,31 @@
+@import "./styles/font_Cera/stylesheet.css";
+@import "./styles/mixins.scss";
+@import "./styles/variables.scss";
+
+* {
+  margin: 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  cursor: default;
+}
+
+body {
+  font-family: "Cera";
+  font-weight: 500;
+  font-style: normal;
+  overflow-y: hidden;
+}
+
+.main {
+  @import "styles/cursor";
+  @import "styles/video";
+  @import "styles/page_1";
+  @import "styles/page_2";
+  @import "styles/page_3";
+  @import "styles/page_4";
+  @import "styles/page_5";
+}

@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Scroller, scrollInitalState } from "react-scroll";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Page1 from "./components/page_1";
+import Video from "./components/Video";
+import Page2 from "./components/page_2";
+import Page3 from "./components/page_3";
+import Cursor from "./components/cursor";
+import { handleOnMouseWheel } from "./components/helper/halper";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.page_2 = React.createRef();
+    this.video = React.createRef();
+    this.cursor = React.createRef();
+  }
+
+  componentDidMount() {
+    this.generator = handleOnMouseWheel.bind(this)();
+    window.addEventListener("wheel", this.stepByStep, { once: true });
+  }
+
+  stepByStep = e => {
+    this.generator.next();
+  };
+
+  handlCursor = e => {
+    // this.cursor.current.style.top = e.nativeEvent.pageX;
+    // this.cursor.current.style.left = e.nativeEvent.pageY;
+    this.cursor.current.setAttribute("style", `top: ${e.nativeEvent.pageY - 7}px; left: ${e.nativeEvent.pageX - 7}px; `)
+    // console.dir(e.nativeEvent.pageX);
+    // console.dir(this.cursor);
+  };
+
+  render() {
+    return (
+      <div className="main" onMouseMove={this.handlCursor}>
+        <Page1 />
+        <Video myRef={this.video} />
+        <Page2 myRef={this.page_2} />
+        <Page3 />
+        <div className="page_4" id="page_4">
+          4
+        </div>
+        <div className="page_5" id="page_5">
+          5
+        </div>
+        <Cursor myRef={this.cursor} />
+      </div>
+    );
+  }
 }
 
 export default App;

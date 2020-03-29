@@ -1,0 +1,127 @@
+.page_2 {
+  @extend %common;
+  .back_grid {
+    @include absolute(50%, -50%, 50%, -50%);
+    width: calc(100% / 6 * 4);
+    height: 100vh;
+    display: grid;
+   
+    grid-template-columns: 40% 10% 50%;
+    grid-template-rows: 4% 46% 36% 10% 4%;
+    grid-template-areas:
+      " .  .  ."
+      " man img desc"
+      " man img desc"
+      " man img menu"
+      " .  .  .";
+
+    .img-man {
+      grid-area: man;
+      position: relative;
+
+      img {
+        @include absolute(40%, -50%, 47%, -50%);
+        height: 110%;
+        will-change: opacity;
+        opacity: 0;
+        transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        &:first-child {
+          opacity: 0.9; 
+        }
+      } 
+    }
+
+    .images {
+      grid-area: img;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      border-right: $grid-border;
+      img {
+        width: 7vh;
+        opacity: 0;
+        @include letter-animate(1, 6, 1.5s, 0s, 20);
+      }
+    }
+
+    .description {
+      grid-area: desc;
+      position: relative;
+     
+      overflow: hidden;
+      overflow-y: scroll;
+      @for $i from 1 through 3 {
+        .sec_#{$i} {
+          display: grid;
+          position: relative;
+          height: 82vh;
+          grid-template-columns: 100%;
+          grid-template-rows: 55vh 27vh;
+          grid-template-areas:
+            "header"
+            "par";
+          scroll-snap-align: start;
+          padding-left: 3%;
+          padding-right: 3%;
+
+          h1 {
+            @include text-style(440px, 700, 1.2px, 110%);
+            @include text-border(2px);
+            grid-area: header;
+            position: relative;
+            display: inline-block;
+            align-self: center;
+            left: -8rem;
+            opacity: 0.3;
+          }
+          h2 {
+            @include absolute(auto, -7%, 50%, -40%);
+            right: 0;
+            color: $light-blue;
+            text-transform: uppercase;
+            text-align: right;
+            font-size: 60px;
+          }
+          p {
+            @extend %paragraph;
+            display: inline-block;
+            grid-area: par;
+            padding-top: 3vh;
+            padding-right: 3%;
+          }
+        }
+      }
+    }
+    ul {
+      grid-area: menu;
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      padding-left: 3%;
+      li {
+        padding: 1% 3.5% 1% 3.5%;
+        a {
+          @include text-style(16px, 700, 0.7px, auto);
+          text-decoration: none;
+          color: $white;
+          opacity: 0.9;
+          padding: 2%;
+          transition: all 0.3s;
+          &:hover {
+            color: $light-blue;
+          }
+          &:active {
+            color: $light-blue;
+          }
+        }
+        &:first-child {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+.page_3 {
+  @extend %common;
+
+  .back_grid {
+    @include absolute(0, 0, 50%, -50%);
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 38% 62%;
+    grid-template-areas: "text" "slide";
+    overflow-x: scroll;
+
+    .header {
+      grid-area: text;
+      align-self: center;
+      h1 {
+        margin-left: calc(50vw / 3);
+        text-transform: uppercase;
+        @include text-style(60px, bold, 4px, auto);
+        color: $white;
+      }
+    }
+
+    .slide_sec {
+      grid-area: slide;
+      padding-left: calc(50% / 2.3);
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+
+      
+      .slide {
+        scroll-snap-align: end;
+        position: relative;
+        width: 350px;
+        height: 350px;
+        img {
+          width: 300px;
+          height: 300px;
+          padding: 0 25px;
+        }
+        h2 {
+          @include text-style(50px, bold, 2px, auto, 0.7);
+          @include text-border(1px);
+          position: relative;
+          top: -5.7rem;
+          margin-top: -1rem;
+          margin-left: -0.5rem;
+          text-shadow: 0px 2px 15px rgba(0, 226, 255, 0.2);
+        }
+        p {
+          @include text-style(18px, bold, 1px, auto);
+          position: relative;
+          width: 55%;
+          top: -6rem;
+          margin-left: -0.5rem;
+          color: $white;
+        }
+      }
+    }
+  }
+}
