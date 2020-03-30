@@ -46,8 +46,8 @@
         z-index: 1;
         
         .indicate {
-          width: 0.1rem;
-          height: 0.7rem;
+          width: 0.07rem;
+          height: 0.5rem;
           border-radius: 1rem;
           background-color: rgba(0, 226, 255, 0.5);
           animation-iteration-count: 4;
@@ -56,14 +56,14 @@
 
         @keyframes animIndicate {
           0% {
-            margin-top: 0rem;
+            margin-top: -2.3rem;
             opacity: 0;
           }
-          30% {
+          40% {
             opacity: 1;
           }
           100% {
-            margin-top: -2.3rem;
+            margin-top: 0rem;
             opacity: 0;
           }
         }
@@ -112,13 +112,13 @@
           width: 1.7rem;
           height: 2.4rem;
           .indicate {
-            height: 0.5rem;
+            height: 0.4rem;
             animation: animIndicate 1.3s ease infinite;
           }
 
           @keyframes animIndicate {
             0% {
-              margin-top: -2.1rem;
+              margin-top: -1.8rem;
               opacity: 0;
             }
             30% {

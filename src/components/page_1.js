@@ -1,17 +1,10 @@
 import React from "react";
 import {Link} from 'react-scroll'
 
-class Page1 extends React.Component {
-  componentDidUpdate(){
-    this.refs.header_text.style.setProperty("--play", "running");
-  }
-  componentDidMount(){
-    // this.refs.header_text.style.setProperty("--play", "running");
-  }
-  
+class Page1 extends React.Component {  
   render() {
     return (
-      <div className="page_1" id="page_1">
+      <div className="page_1" id="page_1" ref={this.props.myRef}>
         <div className="back_grid">
           <div></div>
           <div></div>

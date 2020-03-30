@@ -1,0 +1,19 @@
+@import "./index.scss";
+@import "./styles/font_Cera/stylesheet.css";
+
+* {
+  margin: 0;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  cursor: default;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: "Cera";
+  font-weight: 500;
+  font-style: normal;
+  overflow-y: hidden;
+}
