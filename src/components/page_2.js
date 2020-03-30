@@ -73,7 +73,7 @@ class Page2 extends React.Component {
           <div className="description" ref={this.description}>
             {error ||
               data.map(sec => (
-                <section className={sec.id} id={`p_2_${sec.id}`} key={sec.id}>
+                <section className={sec.id + " sec"} id={`p_2_${sec.id}`} key={sec.id}>
                   <h1>{sec.header_1}</h1>
                   <h2>
                     {sec.header_2[0]}

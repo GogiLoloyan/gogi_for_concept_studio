@@ -6,7 +6,10 @@ import Video from "./components/Video";
 import Page2 from "./components/page_2";
 import Page3 from "./components/page_3";
 import Cursor from "./components/cursor";
-import { handleOnMouseWheel } from "./components/helper/halper";
+import {
+  handleOnMouseWheel,
+  scrollVertically
+} from "./components/helper/halper";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,14 +18,34 @@ class App extends React.Component {
     this.state = {
       ready: false
     };
+
     this.page_2 = React.createRef();
     this.video = React.createRef();
     this.cursor = React.createRef();
   }
 
+  handleOnResize = e => {
+    Object.assign(this.video.current.style, {
+      position: "relative",
+      top: 0,
+      width: "100vw",
+      height: "100vh",
+      opacity: 1,
+      background:
+        "#000e1a linear-gradient(to right, rgba(1, 155, 224, 0.34), rgba(1, 76, 137, 0.34))"
+    });
+    const _html = document.documentElement;
+    window.removeEventListener("wheel", this.stepByStep);
+    _html.addEventListener("mousewheel", scrollVertically.bind(_html));
+  };
+
   componentDidMount() {
     this.generator = handleOnMouseWheel.bind(this)();
-    window.addEventListener("wheel", this.stepByStep, { once: true });
+    window.addEventListener("resize", this.handleOnResize);
+
+    if (window.innerWidth > 1320)
+      window.addEventListener("wheel", this.stepByStep, { once: true });
+    else this.handleOnResize();
 
     this.setState({ ready: true });
   }

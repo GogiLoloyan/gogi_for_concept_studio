@@ -3,9 +3,8 @@ import animateScrollTo from "animated-scroll-to";
 function* handleOnMouseWheel() {
   const page_2 = this.page_2.current.style;
   const video = this.video.current.style;
-  const svg = this.video.current.firstElementChild.style;
-  const _html = document.documentElement; 
-
+  const svg = this.video.current.firstElementChild.firstElementChild.style;
+  const _html = document.documentElement;
 
   function style_video(duration, pos) {
     this.top = `${this.top === "50vh" ? 0 : 50}vh`;
@@ -22,32 +21,42 @@ function* handleOnMouseWheel() {
     this.opacity = 1;
   }
 
-  setTimeout(() => window.addEventListener("wheel", this.stepByStep, { once: true }),400);
+  setTimeout(
+    () => window.addEventListener("wheel", this.stepByStep, { once: true }),
+    600
+  );
   style_video.call(video, 0.7);
   yield;
 
-  setTimeout(() => window.addEventListener("wheel", this.stepByStep, { once: true }),400);
+  setTimeout(
+    () => window.addEventListener("wheel", this.stepByStep, { once: true }),
+    600
+  );
   style_video.call(video, 1, "fixed");
   style_svg.call(svg);
   setTimeout(() => (_html.scrollTop = _html.clientHeight), 700);
   yield;
 
-  setTimeout(() => window.addEventListener("wheel", this.stepByStep, { once: true }),400);
-  video.top = "-110vh";
-  setTimeout(()=> video.display="none" ,400)
-  page_2.setProperty(
-    "--play",
-    "running"
+  setTimeout(
+    () => window.addEventListener("wheel", this.stepByStep, { once: true }),
+    400
   );
+  video.top = "-110vh";
+  video.setProperty("--duration", "1.5s");
+  setTimeout(() => (video.display = "none"), 1000);
+  page_2.setProperty("--play", "running");
   yield;
 
-  setTimeout(() => _html.addEventListener("mousewheel",scrollVertically.bind(_html)),200);
+  setTimeout(
+    () => _html.addEventListener("mousewheel", scrollVertically.bind(_html)),
+    200
+  );
 }
 
 //*********************************************************
 
 let timeStamp = 0;
-
+let left = 0;
 function scrollHorizontally(delta, e) {
   e.preventDefault();
 
@@ -55,30 +64,49 @@ function scrollHorizontally(delta, e) {
     timeStamp = e.timeStamp;
     return;
   }
+
   timeStamp = e.timeStamp;
   const down = e.wheelDelta > 0;
+  const slider = this.slider;
+  const mouse = this.mouse;
 
-  if (this.scrollLeft + this.clientWidth + 10 > this.scrollWidth && !down) {
-    document.documentElement.scrollTop += this.clientHeight / 1.1;
+  if (
+    slider.scrollLeft + slider.clientWidth + 10 > slider.scrollWidth &&
+    !down
+  ) {
+    document.documentElement.scrollTop += slider.clientHeight / 1.1;
   }
-  if (this.scrollLeft <= 0 && down) {
-    document.documentElement.scrollTop -= this.clientHeight / 1.1;
+
+  if (slider.scrollLeft <= 0 && down) {
+    document.documentElement.scrollTop -= slider.clientHeight / 1.1;
   }
-  const del = delta || e.wheelDelta;
-  this.scrollLeft -= down ? -del : del;
+
+  const del = delta * 8 || e.wheelDelta;
+  slider.scrollLeft -= down ? -del : del;
+
+  left += down ? (left === 0 ? 0 : -1) : left === 4 ? 0 : 1;
+
+  if (left === 0) {
+    setTimeout(() => {
+      mouse.style.opacity = 1;
+      mouse.style.transform = "scale(1)";
+    }, 200);
+  } else {
+    mouse.style.opacity = 0;
+    mouse.style.transform = "scale(0.5)";
+  }
 }
 
 //*********************************************************
 
 function scrollVertically(e) {
-  if (timeStamp + 100 > e.timeStamp) {
+  if (timeStamp + 300 > e.timeStamp) {
     timeStamp = e.timeStamp;
-  } else {  
+  } else {
     timeStamp = e.timeStamp;
 
     const down = e.wheelDelta > 0;
     this.scrollTop += down ? -this.clientHeight : this.clientHeight;
-    console.log(this.scrollTop);
   }
 }
 
@@ -105,4 +133,9 @@ function scrollVertically2(e) {
 
 //*****************************************
 
-export { handleOnMouseWheel, scrollHorizontally, scrollVertically2 };
+export {
+  handleOnMouseWheel,
+  scrollHorizontally,
+  scrollVertically2,
+  scrollVertically
+};

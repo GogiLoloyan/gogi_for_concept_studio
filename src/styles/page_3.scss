@@ -31,7 +31,45 @@
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
 
+      .mouse {
+        position: absolute;
+        margin-left: calc(-50% / 4.6);
+        margin-top: -1rem;
+        width: 2rem;
+        height: 3rem;
+        border: 0.05rem solid rgba(0, 226, 255, 0.5);
+        border-radius: 1rem;
+        transition: all 0.1s ease-in;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        
+        .indicate {
+          width: 0.1rem;
+          height: 0.7rem;
+          border-radius: 1rem;
+          background-color: rgba(0, 226, 255, 0.5);
+          animation-iteration-count: 4;
+          animation: animIndicate 1.5s ease-in-out infinite;
+        }
+
       
+        @keyframes animIndicate {
+          0% {
+            margin-top: 0rem;
+            opacity: 0;
+          }
+          30% {
+            opacity: 1;
+          }
+          100% {
+            margin-top: -2.3rem;
+            opacity: 0;
+          }
+        }
+      }
+
       .slide {
         scroll-snap-align: end;
         position: relative;
@@ -61,5 +99,122 @@
         }
       }
     }
+  }
+
+  @include mq(large) {
+    .back_grid {
+      .header {
+        h1 {
+          @include text-style(45px, bold, 3px, auto);
+        }
+      }
+      .slide_sec {
+        .mouse {
+          width: 1.7rem;
+          height: 2.4rem;
+          .indicate {
+            height: 0.5rem;
+            animation: animIndicate 1.3s ease infinite;
+          }
+
+          @keyframes animIndicate {
+            0% {
+              margin-top: -2.1rem;
+              opacity: 0;
+            }
+            30% {
+              opacity: 1;
+            }
+            100% {
+              margin-top: 0rem;
+              opacity: 0;
+            }
+          }
+        }
+        .slide {
+          width: 290px;
+          height: 290px;
+          img {
+            width: 250px;
+            height: 250px;
+            padding: 0 20px;
+          }
+          h2 {
+            font-size: 38px;
+          }
+          p {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+  @include mq(medium) {
+    .back_grid {
+      .slide_sec {
+        .slide {
+          width: 250px;
+          height: 250px;
+
+          img {
+            width: 220px;
+            height: 220px;
+            padding: 0 15px;
+          }
+        }
+      }
+    }
+  }
+
+  @include mq(small) {
+    .back_grid {
+      height: 100%;
+      .header {
+        h1 {
+          margin-left: calc(50vw / 5);
+          @include text-style(33px, bold, 3px, auto);
+        }
+      }
+      .slide_sec {
+        .mouse {
+          width: 1.3rem;
+          height: 2rem;
+
+          .indicate {
+            height: 0.3rem;
+          }
+          @keyframes animIndicate {
+            0% {
+              margin-top: -1.6rem;
+              opacity: 0;
+            }
+            30% {
+              opacity: 1;
+            }
+            100% {
+              margin-top: 0rem;
+              opacity: 0;
+            }
+          }
+        }
+        .slide {
+          width: 250px;
+          height: 250px;
+
+          img {
+            width: 220px;
+            height: 220px;
+            padding: 0 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mq(small) {
+  .page_3 {
+    height: 70vh;
+    scroll-snap-align: center;
   }
 }
