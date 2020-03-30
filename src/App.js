@@ -1,5 +1,4 @@
 import React from "react";
-import { Scroller, scrollInitalState } from "react-scroll";
 
 import Page1 from "./components/page_1";
 import Video from "./components/Video";
@@ -25,6 +24,7 @@ class App extends React.Component {
   }
 
   handleOnResize = e => {
+    e === "page_2" && this.page_2.current.style.setProperty("--play", "running");
     Object.assign(this.video.current.style, {
       position: "relative",
       top: 0,
@@ -64,16 +64,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="main" onMouseMove={this.handlCursor}>
-        <Page1 ready={this.state.ready} />
+        <Page1 ready={this.state.ready} hanleResize={this.handleOnResize} />
         <Video myRef={this.video} />
         <Page2 myRef={this.page_2} />
         <Page3 />
-        <div className="page_4" id="page_4">
-          4
-        </div>
-        <div className="page_5" id="page_5">
-          5
-        </div>
+        <div className="page_4" id="page_4">4</div>
+        <div className="page_5" id="page_5">5</div>
         <Cursor myRef={this.cursor} />
       </div>
     );

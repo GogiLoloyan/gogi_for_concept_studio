@@ -2,19 +2,13 @@ import React from "react";
 import {Link} from 'react-scroll'
 
 class Page1 extends React.Component {
-
-  constructor(){
-    super();
-
-  }
   componentDidUpdate(){
     this.refs.header_text.style.setProperty("--play", "running");
   }
-
   componentDidMount(){
     // this.refs.header_text.style.setProperty("--play", "running");
   }
-
+  
   render() {
     return (
       <div className="page_1" id="page_1">
@@ -28,10 +22,10 @@ class Page1 extends React.Component {
         <div className="header">
           <div className="menu_list">
             <ul>
-              <li><Link to="page_2" smooth={true}  duration={500} isDynamic={true} ignoreCancelEvents={true}><span>01.</span> vIsion</Link></li>
-              <li><Link to="page_3" smooth={true}  duration={500} isDynamic={true} ignoreCancelEvents={true}><span>02.</span> about us</Link></li>
-              <li><Link to="page_4" smooth={true}  duration={500} isDynamic={true} ignoreCancelEvents={true}><span>03.</span> blog</Link></li>
-              <li><Link to="page_5" smooth={true}  duration={500} isDynamic={true} ignoreCancelEvents={true}><span>04.</span> contact</Link></li>
+              <li><Link to="page_2" smooth={true}  duration={500} isDynamic={true} onClick={()=>this.props.hanleResize("page_2")}><span>01.</span> vIsion</Link></li>
+              <li><Link to="page_3" smooth={true}  duration={500} isDynamic={true} onClick={()=>this.props.hanleResize("page_3")}><span>02.</span> about us</Link></li>
+              <li><Link to="page_4" smooth={true}  duration={500} isDynamic={true} onClick={()=>this.props.hanleResize("page_4")}><span>03.</span> blog</Link></li>
+              <li><Link to="page_5" smooth={true}  duration={500} isDynamic={true} onClick={()=>this.props.hanleResize("page_5")}><span>04.</span> contact</Link></li>
             </ul>
           </div>
 

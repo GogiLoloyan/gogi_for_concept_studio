@@ -45,7 +45,7 @@ class Page3 extends React.Component {
             {error ||
               data.map((slide, index) => (
                 <div className="slide" key={slide.id}>
-                  <img src={slide.url} />
+                  <img src={slide.url} alt={slide.id}/>
                   <h2>{`0${index + 1}`}</h2>
                   <p>{slide.description}</p>
                 </div>

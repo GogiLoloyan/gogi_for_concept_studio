@@ -1,10 +1,16 @@
-import animateScrollTo from "animated-scroll-to";
-
 function* handleOnMouseWheel() {
-  const page_2 = this.page_2.current.style;
-  const video = this.video.current.style;
-  const svg = this.video.current.firstElementChild.firstElementChild.style;
-  const _html = document.documentElement;
+
+  const 
+      page_2 = this.page_2.current.style,
+      video = this.video.current.style,
+      svg = this.video.current.firstElementChild.firstElementChild.style,
+      _html = document.documentElement,
+      timeF = () => {
+        setTimeout(
+          () => window.addEventListener("wheel", this.stepByStep, { once: true }),
+          600
+        );
+      };
 
   function style_video(duration, pos) {
     this.top = `${this.top === "50vh" ? 0 : 50}vh`;
@@ -21,30 +27,21 @@ function* handleOnMouseWheel() {
     this.opacity = 1;
   }
 
-  setTimeout(
-    () => window.addEventListener("wheel", this.stepByStep, { once: true }),
-    600
-  );
+  timeF();
   style_video.call(video, 0.7);
   yield;
 
-  setTimeout(
-    () => window.addEventListener("wheel", this.stepByStep, { once: true }),
-    600
-  );
+  timeF();
   style_video.call(video, 1, "fixed");
   style_svg.call(svg);
   setTimeout(() => (_html.scrollTop = _html.clientHeight), 700);
   yield;
 
-  setTimeout(
-    () => window.addEventListener("wheel", this.stepByStep, { once: true }),
-    400
-  );
+  timeF();
   video.top = "-110vh";
   video.setProperty("--duration", "1.5s");
-  setTimeout(() => (video.display = "none"), 1000);
   page_2.setProperty("--play", "running");
+  setTimeout(() => (video.display = "none"), 1000);
   yield;
 
   setTimeout(
@@ -53,51 +50,49 @@ function* handleOnMouseWheel() {
   );
 }
 
-//*********************************************************
 
+//***************************** For page-3 slider***************************
+
+let slideCountFromStart = 0;
 let timeStamp = 0;
-let left = 0;
+
 function scrollHorizontally(delta, e) {
   e.preventDefault();
-
   if (timeStamp + 200 > e.timeStamp) {
     timeStamp = e.timeStamp;
     return;
   }
-
   timeStamp = e.timeStamp;
-  const down = e.wheelDelta > 0;
-  const slider = this.slider;
-  const mouse = this.mouse;
 
-  if (
-    slider.scrollLeft + slider.clientWidth + 10 > slider.scrollWidth &&
-    !down
-  ) {
-    document.documentElement.scrollTop += slider.clientHeight / 1.1;
-  }
+  const 
+      mouse = this.mouse,
+      down = e.wheelDelta > 0,
+      del = delta * 8 || e.wheelDelta,
+      _htmlTop = document.documentElement,
+      {scrollLeft, scrollWidth, clientWidth, clientHeight } = this.slider,
+      mouseStyle = (op, sc) => { mouse.style.opacity = op; mouse.style.transform = "scale("+sc+")"};
 
-  if (slider.scrollLeft <= 0 && down) {
-    document.documentElement.scrollTop -= slider.clientHeight / 1.1;
-  }
 
-  const del = delta * 8 || e.wheelDelta;
-  slider.scrollLeft -= down ? -del : del;
-
-  left += down ? (left === 0 ? 0 : -1) : left === 4 ? 0 : 1;
-
-  if (left === 0) {
-    setTimeout(() => {
-      mouse.style.opacity = 1;
-      mouse.style.transform = "scale(1)";
-    }, 200);
+  if (scrollLeft + clientWidth + 10 > scrollWidth && !down)
+    _htmlTop.scrollTop += clientHeight / 1.1;
+  
+  if (scrollLeft <= 0 && down) _htmlTop.scrollTop -= clientHeight / 1.1;
+  
+  if (down) {
+    this.slider.scrollLeft += del;
+    slideCountFromStart += slideCountFromStart === 0 ? 0 : -1;
   } else {
-    mouse.style.opacity = 0;
-    mouse.style.transform = "scale(0.5)";
+    this.slider.scrollLeft -= del;
+    slideCountFromStart += slideCountFromStart === 4 ? 0 : 1;
   }
+  
+
+  if (slideCountFromStart === 0) setTimeout(() => mouseStyle(1, 1), 200);
+  else mouseStyle(0, 0.5);
 }
 
-//*********************************************************
+
+//***************************** For window ****************************
 
 function scrollVertically(e) {
   if (timeStamp + 300 > e.timeStamp) {
@@ -110,7 +105,8 @@ function scrollVertically(e) {
   }
 }
 
-//*********************************************************
+
+//******************************* For page 2 ****************************
 
 function scrollVertically2(e) {
   e.preventDefault();
@@ -130,6 +126,7 @@ function scrollVertically2(e) {
     document.documentElement.scrollTop -= this.offsetHeight / 1.5;
   }
 }
+
 
 //*****************************************
 
