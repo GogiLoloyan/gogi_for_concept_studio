@@ -1,5 +1,4 @@
 import React from "react";
-import { scrollHorizontally } from "./helper/halper";
 
 class Page3 extends React.Component {
   constructor(props) {
@@ -22,26 +21,22 @@ class Page3 extends React.Component {
       .then(data => this.setState({ data }))
       .catch(error => this.setState({ error: error.message }));
      
-    this.refs.slider.addEventListener(
-      "mousewheel",
-      scrollHorizontally.bind(this.refs, -this.refs.slider.lastElementChild.clientWidth)
-    );
+      this.refs.slider.addEventListener("pointermove", ()=>{
+
+      });
   }
 
   render() {
     const { error, data } = this.state;
     return (
-      <div className="page_3" id="page_3">
+      <section className="page_3" id="page_3" aria-label = "Industries we help">
         <div className="back_grid">
 
-          <section className="header">
-            <h1>INDUSTRIES<br />we help</h1>
-          </section>
+          <header className="header">
+            <h1>Industries<br />we help</h1>
+          </header>
 
-          <section className="slide_sec" ref="slider">
-            <div className="mouse" ref="mouse">
-              <div className="indicate"></div>
-            </div>
+          <article className="slider" ref="slider">
             {error ||
               data.map((slide, index) => (
                 <div className="slide" key={slide.id}>
@@ -50,10 +45,10 @@ class Page3 extends React.Component {
                   <p>{slide.description}</p>
                 </div>
               ))}
-          </section>
+          </article>
 
         </div>
-      </div>
+      </section>
     );
   }
 }

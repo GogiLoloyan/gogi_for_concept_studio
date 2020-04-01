@@ -1,6 +1,6 @@
 import React from "react";
-import { scrollVertically2 } from "./helper/halper";
-import { images, man, images_hover } from "../pictures/list_body_1/images.js";
+import { scrollVertically2 } from "../helper/halper";
+import { images, man, images_hover } from "../../pictures/list_body_1/images.js";
 
 class Page2 extends React.Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class Page2 extends React.Component {
             ))}
           </div>
 
-          <div className="images" ref={this.images}>
+          <div className="body_images" ref={this.images}>
             {images.map(img => (
               <img
                 src={img.url}
@@ -73,29 +73,36 @@ class Page2 extends React.Component {
           <div className="description" ref={this.description}>
             {error ||
               data.map(sec => (
-                <section className={sec.id + " sec"} id={`p_2_${sec.id}`} key={sec.id}>
-                  <h1>{sec.header_1}</h1>
-                  <h2>
-                    {sec.header_2[0]}
-                    <br />
-                    {sec.header_2[1]}
-                  </h2>
+                <section
+                  className={sec.id + " sec"}
+                  id={`p_2_${sec.id}`}
+                  key={sec.id}
+                >
+                  <div>
+                    <h1>{sec.header_1}</h1>
+                    <h2>
+                      {sec.header_2[0]}
+                      <br />
+                      {sec.header_2[1]}
+                    </h2>
+                  </div>
                   <p>{sec.description}</p>
                 </section>
               ))}
           </div>
-
-          <ul>
-            <li>
-              <a href="#p_2_sec_1">01.</a>
-            </li>
-            <li>
-              <a href="#p_2_sec_2">02.</a>
-            </li>
-            <li>
-              <a href="#p_2_sec_3">03.</a>
-            </li>
-          </ul>
+          <nav className="page2_nav">
+            <ul>
+              <li>
+                <a href="#p_2_sec_1">01.</a>
+              </li>
+              <li>
+                <a href="#p_2_sec_2">02.</a>
+              </li>
+              <li>
+                <a href="#p_2_sec_3">03.</a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     );

@@ -1,21 +1,75 @@
 .cursor {
-  position: absolute;
-  width: 11px;
-  height: 11px;
-  color: transparent;
-  border: 3px solid $light-blue;
-  border-radius: 50%;
-  transition: all ease-out 200ms;
-  animation: curs 1s infinity alternate;
-  display: none;
-}
-
-
-@keyframes curs {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(0.6);
-    }
+  
+   pointer-events: none;
+  .small_cursor {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 1.2vh;
+    height: 1.2vh;
+    background: $light-blue;
+    mix-blend-mode: difference;
+    border-radius: 50%;
+    z-index: 10;
+    transform:  translate(-20px,-20px);
+    transition: width 0.3s, height 0.3s, left 0.3s, top 0.3s;
   }
+
+  .big_cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $light-blue;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    opacity: 1;
+    transform:  translate(-20px,-20px);
+    transition: width 0.3s, height 0.3s, left 0.3s, top 0.3s, opacity 0.3s;
+  }
+
+  .small_cursor_magnet {
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+  }
+
+  .big_cursor_magnet {
+    width: 9vh;
+    height: 9vh;
+    left: -4.5vh;
+    top: -4.5vh;
+  }
+
+  .big_cursor_magnet_a {
+    width: 6vh;
+    height: 6vh;
+    left: -3vh;
+    top: -3vh;
+    background: $light-blue;
+  }
+
+  .enterheader {
+    width: 6vh;
+    height: 6vh;
+    left: -3vh;
+    top: -3vh;
+  }
+
+  .hidden {
+    opacity: 0
+  }
+
+  .enterSlider {
+    width: 10vh;
+    height: 10vh;
+    left: -5vh;
+    top: -5vh;
+    background-image: url(../pictures/drag.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+  }
+}

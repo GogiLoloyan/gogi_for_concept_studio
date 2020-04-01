@@ -39,12 +39,14 @@
         margin: 12% 0 0 7%;
         li {
           a {
+            padding-top: 5%;
             font-size: 15px;
             letter-spacing: 1px;
             color: $white;
             text-decoration: none;
             text-transform: lowercase;
             span {
+              
               font-size: 32px;
               @include text-border();
               margin-right: 5%;
@@ -66,15 +68,17 @@
       text-transform: uppercase;
       h2 {
         @include text-style(46px, 400, 1.2px, 110%);
+        display: inline-block;
         span {
-          opacity: 0;
           @include letter-animate(1, 19, 1s, 0.5s);
+          opacity: 0;
         }
       }
       h1 {
-        margin-top: 1%;
         @include text-style(65px, 700, 3px, 110%);
         @include text-border(2px);
+        display: inline-block;
+        margin-top: 1%;
         text-shadow: 0px 3px 15px rgba(0, 226, 255, 0.2);
         span {
           opacity: 0;

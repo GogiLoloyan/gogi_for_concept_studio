@@ -51,49 +51,10 @@ function* handleOnMouseWheel() {
 }
 
 
-//***************************** For page-3 slider***************************
-
-let slideCountFromStart = 0;
-let timeStamp = 0;
-
-function scrollHorizontally(delta, e) {
-  e.preventDefault();
-  if (timeStamp + 200 > e.timeStamp) {
-    timeStamp = e.timeStamp;
-    return;
-  }
-  timeStamp = e.timeStamp;
-
-  const 
-      mouse = this.mouse,
-      down = e.wheelDelta > 0,
-      del = delta * 8 || e.wheelDelta,
-      _htmlTop = document.documentElement,
-      {scrollLeft, scrollWidth, clientWidth, clientHeight } = this.slider,
-      mouseStyle = (op, sc) => { mouse.style.opacity = op; mouse.style.transform = "scale("+sc+")"};
-
-
-  if (scrollLeft + clientWidth + 10 > scrollWidth && !down)
-    _htmlTop.scrollTop += clientHeight / 1.1;
-  
-  if (scrollLeft <= 0 && down) _htmlTop.scrollTop -= clientHeight / 1.1;
-  
-  if (down) {
-    this.slider.scrollLeft += del;
-    slideCountFromStart += slideCountFromStart === 0 ? 0 : -1;
-  } else {
-    this.slider.scrollLeft -= del;
-    slideCountFromStart += slideCountFromStart === 4 ? 0 : 1;
-  }
-  
-
-  if (slideCountFromStart === 0) setTimeout(() => mouseStyle(1, 1), 200);
-  else mouseStyle(0, 0.5);
-}
-
-
 //***************************** For window ****************************
 
+
+let timeStamp = 0;
 function scrollVertically(e) {
   if (timeStamp + 300 > e.timeStamp) {
     timeStamp = e.timeStamp;
@@ -132,7 +93,6 @@ function scrollVertically2(e) {
 
 export {
   handleOnMouseWheel,
-  scrollHorizontally,
   scrollVertically2,
   scrollVertically
 };

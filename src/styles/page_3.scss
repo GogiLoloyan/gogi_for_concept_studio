@@ -6,14 +6,15 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 38% 62%;
-    grid-template-areas: "text" "slide";
+    grid-template-rows: 34% 58% 12%;
+    grid-template-areas: "text" "slide" ;
     overflow-x: scroll;
 
     .header {
       grid-area: text;
       align-self: center;
       h1 {
+        display: inline-block;
         margin-left: calc(50vw / 3);
         text-transform: uppercase;
         @include text-style(60px, bold, 4px, auto);
@@ -21,9 +22,9 @@
       }
     }
 
-    .slide_sec {
+    .slider {
       grid-area: slide;
-      padding-left: calc(50% / 2.3);
+      padding: 2% 0 2% calc(50% / 2.3);
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
@@ -31,69 +32,28 @@
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
 
-      .mouse {
-        position: absolute;
-        margin-left: calc(-50% / 4.6);
-        margin-top: -1rem;
-        width: 2rem;
-        height: 3rem;
-        border: 0.05rem solid rgba(0, 226, 255, 0.5);
-        border-radius: 1rem;
-        transition: all 0.1s ease-in;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1;
-        
-        .indicate {
-          width: 0.07rem;
-          height: 0.5rem;
-          border-radius: 1rem;
-          background-color: rgba(0, 226, 255, 0.5);
-          animation-iteration-count: 4;
-          animation: animIndicate 1.5s ease-in-out infinite;
-        }
-
-        @keyframes animIndicate {
-          0% {
-            margin-top: -2.3rem;
-            opacity: 0;
-          }
-          40% {
-            opacity: 1;
-          }
-          100% {
-            margin-top: 0rem;
-            opacity: 0;
-          }
-        }
-      }
-
       .slide {
         scroll-snap-align: end;
         position: relative;
-        width: 350px;
-        height: 350px;
+        height: 300px;
+       
         img {
           width: 300px;
-          height: 300px;
+          height: 100%;
           padding: 0 25px;
         }
         h2 {
           @include text-style(50px, bold, 2px, auto, 0.7);
           @include text-border(1px);
-          position: relative;
-          top: -5.7rem;
-          margin-top: -1rem;
-          margin-left: -0.5rem;
+          position: absolute;
+          top: 50%;
           text-shadow: 0px 2px 15px rgba(0, 226, 255, 0.2);
         }
         p {
           @include text-style(18px, bold, 1px, auto);
-          position: relative;
+          position: absolute;
           width: 55%;
-          top: -6rem;
-          margin-left: -0.5rem;
+          top: 70%;
           color: $white;
         }
       }
@@ -107,35 +67,11 @@
           @include text-style(45px, bold, 3px, auto);
         }
       }
-      .slide_sec {
-        .mouse {
-          width: 1.7rem;
-          height: 2.4rem;
-          .indicate {
-            height: 0.4rem;
-            animation: animIndicate 1.3s ease infinite;
-          }
-
-          @keyframes animIndicate {
-            0% {
-              margin-top: -1.8rem;
-              opacity: 0;
-            }
-            30% {
-              opacity: 1;
-            }
-            100% {
-              margin-top: 0rem;
-              opacity: 0;
-            }
-          }
-        }
+      .slider {
         .slide {
-          width: 290px;
-          height: 290px;
+          height: 250px;
           img {
             width: 250px;
-            height: 250px;
             padding: 0 20px;
           }
           h2 {
@@ -150,14 +86,12 @@
   }
   @include mq(medium) {
     .back_grid {
-      .slide_sec {
+      .slider {
         .slide {
-          width: 250px;
-          height: 250px;
+          height: 220px;
 
           img {
             width: 220px;
-            height: 220px;
             padding: 0 15px;
           }
         }
@@ -174,46 +108,16 @@
           @include text-style(33px, bold, 3px, auto);
         }
       }
-      .slide_sec {
-        .mouse {
-          width: 1.3rem;
-          height: 2rem;
-
-          .indicate {
-            height: 0.3rem;
-          }
-          @keyframes animIndicate {
-            0% {
-              margin-top: -1.6rem;
-              opacity: 0;
-            }
-            30% {
-              opacity: 1;
-            }
-            100% {
-              margin-top: 0rem;
-              opacity: 0;
-            }
-          }
-        }
+      .sslider {
         .slide {
-          width: 250px;
-          height: 250px;
+          height: 200px;
 
           img {
-            width: 220px;
-            height: 220px;
+            width: 200px;
             padding: 0 15px;
           }
         }
       }
     }
-  }
-}
-
-@include mq(small) {
-  .page_3 {
-    height: 70vh;
-    scroll-snap-align: center;
   }
 }
