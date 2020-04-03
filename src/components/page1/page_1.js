@@ -1,10 +1,10 @@
 import React from "react";
-import {Link} from 'react-scroll'
+// import withGsapScroll from "./withGsapScroll";
 
-class Page1 extends React.Component {  
+class Page1 extends React.Component { 
   render() {
     return (
-      <div className="page_1" id="page_1" ref={this.props.myRef}>
+      <div className="page_1" id="page_1">
         <div className="back_grid">
           <div></div>
           <div></div>
@@ -15,10 +15,10 @@ class Page1 extends React.Component {
         <div className="header">
           <div className="menu_list">
             <ul>
-              <li><Link to="page_2" smooth={true}  duration={500} isDynamic={true} onClick={()=>this.props.hanleResize("page_2")}><span>01.</span> vIsion</Link></li>
-              <li><Link to="page_3" smooth={true}  duration={500} isDynamic={true} onClick={()=>this.props.hanleResize("page_3")}><span>02.</span> about us</Link></li>
-              <li><Link to="page_4" smooth={true}  duration={500} isDynamic={true} onClick={()=>this.props.hanleResize("page_4")}><span>03.</span> blog</Link></li>
-              <li><Link to="page_5" smooth={true}  duration={500} isDynamic={true} onClick={()=>this.props.hanleResize("page_5")}><span>04.</span> contact</Link></li>
+              <li><a href="#page_2"><span className="menuIndex">01.</span><span className="menuText">vIsion</span></a></li>
+              <li><a href="#page_3"><span className="menuIndex">02.</span><span className="menuText">about us</span></a></li>
+              <li><a href="#page_4"><span className="menuIndex">03.</span><span className="menuText">blog</span></a></li>
+              <li><a href="#page_5"><span className="menuIndex">04.</span><span className="menuText">contact</span></a></li>
             </ul>
           </div>
 
@@ -86,4 +86,6 @@ class Page1 extends React.Component {
   }
 }
 
+// export default withGsapScroll(Page1);
 export default Page1;
+

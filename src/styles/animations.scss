@@ -20,16 +20,10 @@
     }
 
     &:nth-child(#{$j}) {
-      animation: let-animate_#{$j}
-        $d
-        cubic-bezier(0.5, 1, 0.89, 1)
-        $s
-        var(--play, paused)
-        forwards;
+      animation: let-animate_#{$j} $d cubic-bezier(0.5, 1, 0.89, 1) $s var(--play, paused) forwards;
     }
   }
 }
-
 
 @keyframes animateCursor {
   from {

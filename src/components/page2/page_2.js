@@ -1,38 +1,13 @@
 import React from "react";
-import { scrollVertically2 } from "../helper/halper";
-import { images, man, images_hover } from "../../pictures/list_body_1/images.js";
+import data from './data'
+import { images, man, images_hover } from "../../pictures/list_body/images.js";
 
 class Page2 extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      data: [],
-      error: null
-    };
-
     this.man = React.createRef();
     this.man_images = React.createRef();
-    this.images = React.createRef();
-    this.description = React.createRef();
-  }
-
-  componentDidMount() {
-    fetch("./data/data_for_page_2.json")
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong ...");
-        }
-      })
-      .then(data => this.setState({ data }))
-      .catch(error => this.setState({ error: error.message }));
-
-    this.description.current.addEventListener(
-      "mousewheel",
-      scrollVertically2.bind(this.description.current)
-    );
   }
 
   handleMouseEnter(id) {
@@ -46,8 +21,6 @@ class Page2 extends React.Component {
   }
 
   render() {
-    const { data, error } = this.state;
-
     return (
       <div className="page_2" id="page_2" ref={this.props.myRef}>
         <div className="back_grid">
@@ -58,7 +31,7 @@ class Page2 extends React.Component {
             ))}
           </div>
 
-          <div className="body_images" ref={this.images}>
+          <div className="body_images">
             {images.map(img => (
               <img
                 src={img.url}
@@ -70,37 +43,22 @@ class Page2 extends React.Component {
             ))}
           </div>
 
-          <div className="description" ref={this.description}>
-            {error ||
-              data.map(sec => (
-                <section
-                  className={sec.id + " sec"}
-                  id={`p_2_${sec.id}`}
-                  key={sec.id}
-                >
-                  <div>
-                    <h1>{sec.header_1}</h1>
-                    <h2>
-                      {sec.header_2[0]}
-                      <br />
-                      {sec.header_2[1]}
-                    </h2>
-                  </div>
-                  <p>{sec.description}</p>
-                </section>
-              ))}
+          <div className="description">
+            {data.map(sec => (
+              <section className={sec.id + " sec"} id={`p_2_${sec.id}`} key={sec.id}>
+                <header>
+                  <h1>{sec.header_1}</h1>
+                  <h2>{sec.header_2[0]}<br />{sec.header_2[1]}</h2>
+                </header>
+                <p>{sec.description}</p>
+              </section>
+            ))}
           </div>
-          <nav className="page2_nav">
+          <nav className="nav">
             <ul>
-              <li>
-                <a href="#p_2_sec_1">01.</a>
-              </li>
-              <li>
-                <a href="#p_2_sec_2">02.</a>
-              </li>
-              <li>
-                <a href="#p_2_sec_3">03.</a>
-              </li>
+              <li><a href="#p_2_sec_1">01.</a></li>
+              <li><a href="#p_2_sec_2">02.</a></li>
+              <li><a href="#p_2_sec_3">03.</a></li>
             </ul>
           </nav>
         </div>

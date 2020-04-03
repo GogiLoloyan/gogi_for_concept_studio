@@ -41,10 +41,11 @@
       align-items: center;
       text-align: center;
       border-right: $grid-border;
-      padding: 5vh 0;
+      padding: 3vh 0;
       img {
-        width: 7vh;
-        height: 7vh;
+        padding: 4vh;
+        width: 5vh;
+        height: 5vh;
         opacity: 0;
         @include letter-animate(1, 6, 1.5s, 0s, 20);
       }
@@ -56,7 +57,10 @@
 
       overflow: hidden;
       overflow-y: scroll;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
       .sec {
+        scroll-snap-align: start;
         display: grid;
         position: relative;
         height: 82vh;
@@ -68,7 +72,7 @@
         scroll-snap-align: start;
         padding-left: 3%;
         padding-right: 3%;
-        div {
+        header {
           grid-area: header;
           position: relative;
           left: -8rem;
@@ -98,7 +102,7 @@
         }
       }
     }
-    .page2_nav {
+    .nav {
       grid-area: menu;
       align-self: flex-end;
       padding-left: 3%;
@@ -107,24 +111,23 @@
         display: flex;
         flex-direction: row;
         padding-left: 0;
+        margin-left: -2%;
         li {
-          padding: 1% 3.5% 1% 3.5%;
+          display: contents;
+          color: $white;
           a {
             @include text-style(16px, 700, 0.7px, auto);
             text-decoration: none;
-            color: $white;
+            color: inherit;
             opacity: 0.9;
             padding: 2%;
             transition: all 0.3s;
-            &:hover {
-              color: $light-blue;
-            }
-            &:active {
-              color: $light-blue;
-            }
           }
-          &:first-child {
-            padding-left: 0;
+          &:hover {
+            color: $light-blue;
+          }
+          &:active {
+            color: $light-blue;
           }
         }
       }

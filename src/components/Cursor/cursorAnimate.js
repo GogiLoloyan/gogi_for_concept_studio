@@ -4,17 +4,16 @@ let clientY = -100;
 let lastX = 0;
 let lastY = 0;
 let isStuck = false;
-let showCursor = false;
-let group, stuckX, stuckY, fillOuterCursor;
+let stuckX, stuckY;
 
-function initCursorAnimate() {
+function initCursorAnimate(cursors) {
     /* 
         requestAnimationFrame-ը վարյկյանում 60 անգամ
         a-ն ավելացնում է մինչև b-ին հասնելը՝ այսինքն
         big_cursor-ի դիրքը հավասարեցնում է small_cursor-ի դիրքին,
     */
-    const smStyle = this.small_cursor.style;
-    const bgStyle = this.big_cursor.style;
+    const bgStyle = cursors.bigCursor.style;
+    const smStyle = cursors.smallCursor.style;
     const lerp = (a, b, n) => {
         return (1 - n) * a + n * b;
     };
@@ -38,106 +37,96 @@ function initCursorAnimate() {
     requestAnimationFrame(render);
 };
 
+function initHoversAnimate(cursors) {
+    const CLs = [cursors.bigCursor.classList, cursors.smallCursor.classList]
+    new OnSlider(CLs);
+    new OnHeaders(CLs);
+    new OnBodyImagesAndLinks(CLs);
+};
 
-function initHoversAnimate() {
-    const bigClass = this.big_cursor.classList;
-    const smallClass = this.small_cursor.classList;
-
-    // for all body images magnet animation
-    const handleMouseEnter = e => {
+class OnSlider {
+    constructor(cursors) {
+        [this.bigCursor, this.smallCursor] = cursors;
+        document.querySelectorAll(".page_3 .slide-outer .draggable").forEach(item => {
+            item.addEventListener("mouseenter", this.handleMouseEnter);
+            item.addEventListener("mouseleave", this.handleMouseLeave);
+            item.addEventListener("pointermove", this.handleMouseOn);
+        });
+    }
+    handleMouseEnter = () => {
+        this.smallCursor.add("enterSlider");
+        this.bigCursor.add("hidden");
+    };
+    handleMouseLeave = () => {
+        this.smallCursor.remove("enterSlider");
+        this.bigCursor.remove("hidden");
+    };
+    handleMouseOn = (e) => {
+        clientX = e.clientX;
+        clientY = e.clientY;
+    };
+}
+class OnHeaders {
+    constructor(cursors) {
+        [this.bigCursor, this.smallCursor] = cursors;
+        document.querySelectorAll("h2, .page_1 h1,.page_3 h1").forEach(item => {
+            item.addEventListener("mousemove", this.handleMouseEnter);
+            item.addEventListener("mouseleave", this.handleMouseLeave);
+        });
+    }
+    handleMouseEnter = e => {
+        this.bigCursor.add("hidden");
+        this.smallCursor.add("enterheader");
+    };
+    handleMouseLeave = e => {
+        this.bigCursor.remove("hidden");
+        this.smallCursor.remove("enterheader");
+    };
+}
+class OnBodyImagesAndLinks {
+    constructor(cursors) {
+        [this.bigCursor, this.smallCursor] = cursors;
+        document.querySelectorAll(".page_2 .body_images img, .page_2 .nav a, .page_1 .menu_list li").forEach(item => {
+            item.addEventListener("mousemove", this.handleMouseEnter);
+            item.addEventListener("mouseleave", this.handleMouseLeave);
+        });
+    }
+    handleMouseEnter = e => {
         const hoverItem = e.currentTarget;
         const { top, left, width, height } = hoverItem.getBoundingClientRect();
         stuckX = Math.round(left + width / 2);
         stuckY = Math.round(top + height / 2);
-        smallClass.add("small_cursor_magnet");
-        if(e.currentTarget.tagName === "IMG"){
-            bigClass.add("big_cursor_magnet");
-        } else if(e.currentTarget.tagName === "A"){
-            bigClass.add("big_cursor_magnet_a");
+        this.smallCursor.add("small_cursor_magnet");
+        switch (hoverItem.tagName) {
+            case "IMG":
+                this.bigCursor.add("big_cursor_magnet"); break;
+            case "LI":
+                stuckX = e.clientX;
+            case "A":
+                this.bigCursor.add("big_cursor_magnet_a"); break;
+            default:
         }
         isStuck = true;
     };
-    const handleMouseLeave = (e) => {
+    handleMouseLeave = (e) => {
         isStuck = false;
-        smallClass.remove("small_cursor_magnet");
-        if(e.currentTarget.tagName === "IMG"){
-            bigClass.remove("big_cursor_magnet");
+        const hoverItem = e.currentTarget;
+        this.smallCursor.remove("small_cursor_magnet");
+        switch (hoverItem.tagName) {
+            case "IMG":
+                this.bigCursor.remove("big_cursor_magnet"); break;
+            case "LI":
+            case "A":
+                this.bigCursor.remove("big_cursor_magnet_a"); break;
+            default:
         }
-        else if(e.currentTarget.tagName === "A"){
-            bigClass.remove("big_cursor_magnet_a");
-        }
     };
+}
 
-    // const handleMouseEnterMainLinks = e => {
-    //     const hoverItem = e.currentTarget;
-    //     const { top, left, width, height } = hoverItem.getBoundingClientRect();
-    //     stuckX = Math.round(left - width/10);
-    //     stuckY = Math.round(top - height/5);
-    //     smallClass.add("small_cursor_magnet");
-    //     this.big_cursor.style.width = width*1.2 + "px";
-    //     this.big_cursor.style.height = height*1.5 + "px";
-    //     this.big_cursor.style.borderRadius = height + "px" 
-    //     this.big_cursor.style.background = "#00e2ff";
-    //     isStuck = true;
-    // };
-
-    // const handleMouseLeaveMainLinks = e => {
-    //     isStuck = false;
-    //     smallClass.remove("small_cursor_magnet");
-    //     this.big_cursor.style.width = "20px";
-    //     this.big_cursor.style.height = "20px";
-    //     this.big_cursor.style.borderRadius = "50%"; 
-    //     this.big_cursor.style.background = "initial";
-    // }
-
-    // for all header text animation
-    const handleMouseEnterHeaders = () => {
-        smallClass.add("enterheader");
-        bigClass.add("hidden");
-    };
-    const handleMouseLeaveHeaders = () => {
-        smallClass.remove("enterheader");
-        bigClass.remove("hidden");
-    };
-
-    // for page 3 slider animation
-    const handleMouseEnterSlider = () => {
-        smallClass.add("enterSlider");
-        bigClass.add("hidden");
-    };
-    const handleMouseLeaveSlider = () => {
-        smallClass.remove("enterSlider");
-        bigClass.remove("hidden");
-    };
-    const handleMouseOnSlider = e => {
-        clientX = e.clientX;
-        clientY = e.clientY;
-    };
-
-    // for all page 2 body images and nav's "a" tag magnet animation 
-    document.querySelectorAll(".body_images img, .page2_nav a").forEach(item => {
-        item.addEventListener("mousemove", handleMouseEnter);
-        item.addEventListener("mouseleave", handleMouseLeave);
-    });
-
-    // for all header text and animation
-    document.querySelectorAll(".page_1 h1, h2, .page_3 h1").forEach(item => {
-        item.addEventListener("mousemove", handleMouseEnterHeaders);
-        item.addEventListener("mouseleave", handleMouseLeaveHeaders);
-    });
-
-    // for page 3 slider animation
-    document.querySelectorAll(".page_3 .slider").forEach(item => {
-        item.addEventListener("mouseenter", handleMouseEnterSlider);
-        item.addEventListener("mouseleave", handleMouseLeaveSlider);
-        item.addEventListener("pointermove", handleMouseOnSlider);
-        item.setAttribute('listener', 'true');
-    });
-
-    // document.querySelectorAll(".page_1 .menu_list a").forEach(item => {
-    //     item.addEventListener("mousemove", handleMouseEnterMainLinks);
-    //     item.addEventListener("mouseleave", handleMouseLeaveMainLinks);
-    // });
-};
-
-export { initCursorAnimate, initHoversAnimate };
+window.addEventListener('load', () => {
+    const smallCursor = document.querySelector(".small_cursor");
+    const bigCursor = document.querySelector(".big_cursor");
+    const cursors = { smallCursor, bigCursor };
+    initCursorAnimate(cursors);
+    initHoversAnimate(cursors);
+})

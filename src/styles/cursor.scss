@@ -1,5 +1,4 @@
 .cursor {
-  
    pointer-events: none;
   .small_cursor {
     top: 0;
@@ -71,5 +70,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 75%;
+  }
+
+  .enterMainNav {
+    width: var(--w-link);
+    height: var(--h-link);
+    border-radius: var(--r-link);
   }
 }
