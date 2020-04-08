@@ -67,11 +67,14 @@ function initScrollLef(DOM) {
     let swiping;
 
     const _onTouchStart = e => {
-      swiping = e.changedTouches[0].clientY;
+        console.log(1)
+      swiping = e.changedTouches[0].clientX;
     }
 
     const _onTouchEnd = e => {
-      const delta = swiping - e.changedTouches[0].clientY;
+        console.log(2)
+
+      const delta = swiping - e.changedTouches[0].clientX;
       if(delta && Math.abs(delta) > minDistance){
         !isClicked && delta > 0 && onRigth();
         isClicked && delta < 0 && onLeft();
