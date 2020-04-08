@@ -36,7 +36,7 @@ class Page2 extends React.Component {
   render() {
     const propsBody = { images,  handleMouseEnter: this.handleMouseEnter, handleMouseLeave: this.handleMouseLeave };
     const propsMan = { man, images_hover, bRef: this.man_body,  imgsRef: this.man_images };
-    const events = {onScroll: this.handleOnWheel, onWheel: this.handleOnWheel};
+    const events = {onTouchMove: this.handleOnWheel, onWheel: this.handleOnWheel};
     return (
       <>
         <Parallax.Layer offset={this.props.offset} {...events}></Parallax.Layer>
