@@ -46,6 +46,7 @@ function initScrollLef(DOM) {
             p4Desc.addEventListener("touchend", _onTouchEnd);
             p4DescSec.addEventListener("click", onLeft);
             p4DescSec.addEventListener("wheel", onWeelLeft);
+            p4DescSec.addEventListener("touchstart", _onTouchStart);
             p4DescSec.addEventListener("touchend", _onTouchEnd);
         } else if(isSmall && winWidth > 1024){
             isSmall = false;
