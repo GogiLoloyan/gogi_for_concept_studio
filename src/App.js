@@ -17,7 +17,6 @@ function App() {
   const scroll = to => inputEl.current.scrollTo(to);
   return (
     <div className="main">
-
       <Page1 />
       <Parallax ref={inputEl} pages={5} vertically scrolling={false}>
         <Page2 offset={0} onWheel={scroll}/>
@@ -27,7 +26,6 @@ function App() {
         <Page6 offset={4} onWheel={scroll}/>
       </Parallax>
         <Description />  {/* for page 4 */}
-
       <Cursor />
       {/* <Video /> */}
     </div>
