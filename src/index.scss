@@ -1,15 +1,13 @@
 @import "./styles/font_Cera/stylesheet.css";
 @import "./styles/mixins.scss";
 @import "./styles/variables.scss";
+@import "./styles/animations.scss";
 
 * {
   margin: 0;
   &::-webkit-scrollbar {
     display: none;
   }
-
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
   cursor: none;
 }
 
@@ -19,7 +17,7 @@ body {
   font-style: normal;
   background: #000e1a
   linear-gradient(to right, rgba(1, 155, 224, 0.34), rgba(1, 76, 137, 0.34));
-  // overflow-y: hidden;
+  overflow-y: hidden;
 }
 
 .main {
@@ -30,4 +28,5 @@ body {
   @import "styles/page_3";
   @import "styles/page_4";
   @import "styles/page_5";
+  @import "styles/page_6";
 }

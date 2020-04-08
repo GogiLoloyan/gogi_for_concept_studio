@@ -1,4 +1,4 @@
-@import "./animations.scss";
+
 
 .page_1 {
   @extend %common;
@@ -73,7 +73,7 @@
       text-transform: uppercase;
       h2 {
         @include text-style(46px, 400, 1.2px, 110%);
-        width: fit-content;
+        display: contents;
         span {
           @include letter-animate(1, 19, 0.8s, 0.5s);
           opacity: 0;
@@ -82,7 +82,7 @@
       h1 {
         @include text-style(65px, 700, 3px, 110%);
         @include text-border(2px);
-        width: fit-content;
+        display: contents;
         margin-top: 1%;
         text-shadow: 0px 3px 15px rgba(0, 226, 255, 0.2);
         span {

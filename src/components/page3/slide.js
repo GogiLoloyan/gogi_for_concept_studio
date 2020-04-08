@@ -74,4 +74,4 @@ class Slide {
         });
     }
 }
-window.addEventListener('load',()=>new Slide(document.querySelector('.slide-outer')))
+window.addEventListener('load',()=>new Slide(document.querySelector('.page-3__slide-outer')))

@@ -9,11 +9,24 @@ $grid-border: 1px solid rgba(0, 226, 255, 0.1);
 %common {
   position: relative;
   height: 100vh;
-  scroll-snap-align: start;
 }
 
 %paragraph{
   color: $white;
   font-size: 14px;
   opacity: 0.7;
+}
+
+%header-2{
+  display: contents;
+  font-size: 60px;
+  text-transform: uppercase;
+  letter-spacing: 5px;  
+}
+
+%header-2__large{
+  display: contents;
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 5px;  
 }

@@ -1,141 +1,155 @@
-.page_3 {
-  @extend %common;
-
-  .back_grid {
-    @include absolute(0, 0, 50%, -50%);
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 34% 58% 12%;
-    grid-template-areas: "text" "slider" ".";
-
-    .header {
-      grid-area: text;
-      align-self: center;
-      h1 {
-        display: inline-block;
-        margin-left: calc(50vw / 3);
-        text-transform: uppercase;
-        @include text-style(60px, bold, 4px, auto);
-        color: $white;
-      }
-    }
-
-    .slide-outer {
-      grid-area: slider;
-      width: 100%;
-      height: 300px;
-      position: relative;
-      overflow: hidden;
-      align-self: center;
-      .slide-inner {
-        position: absolute;
-        left: 300px;
-        top: 0;
-        height: 100%;
-
-        .draggable {
-          position: absolute;
-          height: 100%;
-          width: 100%;
-          z-index: 2000;
-        }
-        .slide {
-          height: 350px;
-          width: 100%;
-          display: flex;
-          align-items: start;
-          position: relative;
-          pointer-events: none;
-          .slide__item {
-            position: relative;
-            height: 350px;
-            width: 350px;
-            margin: 0 1% 0 1%;
-            .img {
-              height: 300px;
-              width: 300px;
-              position: relative;
-              clip-path: polygon(0 100%, 0 0, 100% 0, 100% 85%, 80% 100%);
-            }
-            .description {
-              position: absolute;
-              left: -7%;
-              top: 55%;
-              display: flex;
-              flex-direction: column;
-              width: 55%;
-              h3 {
-                @include text-style(50px, 500, 2px, 100%, 0.7);
-                @include text-border(1px);
-                text-shadow: 0px 2px 15px rgba(0, 226, 255, 0.2);
-              }
-              p {
-                @include text-style(18px, bold, 1px, initial);
-                color: $white;
-              }
-            }
-          }
-        }
-      }
+.page-3__header {
+  margin-left: calc(50vw / 3);
+  .header {
+    height: 40vh;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    h1 {
+      @extend %header-2;
+      color: $white;
+      display: contents;
     }
   }
+}
 
-  @include mq(large) {
-    .back_grid {
-      .header {
-        h1 {
-          @include text-style(45px, bold, 3px, auto);
+.page-3__slide-outer {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  align-self: center;
+  .slide-inner {
+    position: absolute;
+    left: 300px;
+    top: 0;
+    padding-right: 5%;
+    height: 100%;
+    .draggable {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: 2000;
+    }
+    .slide {
+      height: 300px;
+      width: 100%;
+      display: flex;
+      align-items: start;
+      position: relative;
+      pointer-events: none;
+      .slide__item {
+        position: relative;
+        height: 350px;
+        width: 350px;
+        margin: 0 1% 0 1%;
+        .img {
+          position: relative;
+          height: 300px;
+          width: 300px;
+          position: relative;
+          clip-path: polygon(0 100%, 0 0, 100% 0, 100% 85%, 80% 100%);
         }
-      }
-      .slider {
-        .slide {
-          height: 250px;
-          img {
-            width: 250px;
-            padding: 0 20px;
-          }
-          h2 {
-            font-size: 38px;
+        .description {
+          position: absolute;
+          left: -7%;
+          top: 55%;
+          display: flex;
+          flex-direction: column;
+          width: 55%;
+          h3 {
+            @include text-style(50px, 500, 2px, 100%, 0.7);
+            @include text-border(1px);
+            text-shadow: 0px 2px 15px rgba(0, 226, 255, 0.2);
           }
           p {
-            font-size: 15px;
+            @include text-style(18px, bold, 1px, initial);
+            color: $white;
           }
         }
       }
     }
   }
-  @include mq(medium) {
-    .back_grid {
-      .slider {
-        .slide {
-          height: 220px;
+}
 
-          img {
+@include mq(large) {
+  .page-3__header {
+    margin-left: calc(100vw / 10);
+    .header {
+      h1 {
+        font-size: 45px;
+      }
+    }
+  }
+  .page-3__slide-outer {
+    .slide-inner {
+      left: calc(100vw / 10);
+      .slide {
+        .slide__item {
+          height: 300px;
+          width: 300px;
+          .img {
+            height: 250px;
+            width: 250px;
+          }
+          .description {
+            h3 {
+              @include text-style(40px, 500, 2px, 100%, 0.7);
+            }
+            p {
+              @include text-style(15px, bold, 1px, initial);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@include mq(medium) {
+  .page-3__slide-outer {
+    .slide-inner {
+      left: calc(100vw / 10);
+      .slide {
+        .slide__item {
+          height: 250px;
+          width: 270px;
+          .img {
+            height: 220px;
             width: 220px;
-            padding: 0 15px;
           }
         }
       }
     }
   }
-  @include mq(small) {
-    .back_grid {
-      height: 100%;
-      .header {
-        h1 {
-          margin-left: calc(50vw / 5);
-          @include text-style(33px, bold, 3px, auto);
-        }
+}
+@include mq(small) {
+  .page-3__header {
+    margin-left: calc(100vw / 28);
+    .header {
+      h1 {
+        letter-spacing: 1px;
+        font-size: 32px;
       }
-      .sslider {
-        .slide {
-          height: 200px;
-
-          img {
+    }
+  }
+  .page-3__slide-outer {
+    .slide-inner {
+      left: calc(100% / 28);
+      .slide {
+        .slide__item {
+          height: 230px;
+          width: 240px;
+          .img {
+            height: 200px;
             width: 200px;
-            padding: 0 15px;
+          }
+          .description {
+            h3 {
+              font-size: 35px;
+            }
+            p {
+              font-size: 13px;
+            }
           }
         }
       }

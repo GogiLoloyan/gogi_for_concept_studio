@@ -6,7 +6,7 @@ let lastY = 0;
 let isStuck = false;
 let stuckX, stuckY;
 
-function initCursorAnimate(cursors) {
+function initP4DescSecScroll(cursors) {
     /* 
         requestAnimationFrame-ը վարյկյանում 60 անգամ
         a-ն ավելացնում է մինչև b-ին հասնելը՝ այսինքն
@@ -37,17 +37,10 @@ function initCursorAnimate(cursors) {
     requestAnimationFrame(render);
 };
 
-function initHoversAnimate(cursors) {
-    const CLs = [cursors.bigCursor.classList, cursors.smallCursor.classList]
-    new OnSlider(CLs);
-    new OnHeaders(CLs);
-    new OnBodyImagesAndLinks(CLs);
-};
-
-class OnSlider {
+class cursorSlide {
     constructor(cursors) {
         [this.bigCursor, this.smallCursor] = cursors;
-        document.querySelectorAll(".page_3 .slide-outer .draggable").forEach(item => {
+        document.querySelectorAll(".page-3__slide-outer .draggable").forEach(item => {
             item.addEventListener("mouseenter", this.handleMouseEnter);
             item.addEventListener("mouseleave", this.handleMouseLeave);
             item.addEventListener("pointermove", this.handleMouseOn);
@@ -66,10 +59,10 @@ class OnSlider {
         clientY = e.clientY;
     };
 }
-class OnHeaders {
+class cursorFull {
     constructor(cursors) {
         [this.bigCursor, this.smallCursor] = cursors;
-        document.querySelectorAll("h2, .page_1 h1,.page_3 h1").forEach(item => {
+        document.querySelectorAll("h1, h2, .inner-circle").forEach(item => {
             item.addEventListener("mousemove", this.handleMouseEnter);
             item.addEventListener("mouseleave", this.handleMouseLeave);
         });
@@ -83,10 +76,10 @@ class OnHeaders {
         this.smallCursor.remove("enterheader");
     };
 }
-class OnBodyImagesAndLinks {
+class cursorMagnet {
     constructor(cursors) {
         [this.bigCursor, this.smallCursor] = cursors;
-        document.querySelectorAll(".page_2 .body_images img, .page_2 .nav a, .page_1 .menu_list li").forEach(item => {
+        document.querySelectorAll(".page-2 .body-images img, .page-2 .nav span, .page_1 .menu_list li, .page-6 .footer__menu .menu li").forEach(item => {
             item.addEventListener("mousemove", this.handleMouseEnter);
             item.addEventListener("mouseleave", this.handleMouseLeave);
         });
@@ -102,7 +95,8 @@ class OnBodyImagesAndLinks {
                 this.bigCursor.add("big_cursor_magnet"); break;
             case "LI":
                 stuckX = e.clientX;
-            case "A":
+                this.bigCursor.add("big_cursor_magnet_a"); break;
+            case "SPAN":
                 this.bigCursor.add("big_cursor_magnet_a"); break;
             default:
         }
@@ -116,17 +110,24 @@ class OnBodyImagesAndLinks {
             case "IMG":
                 this.bigCursor.remove("big_cursor_magnet"); break;
             case "LI":
-            case "A":
+            case "SPAN":
                 this.bigCursor.remove("big_cursor_magnet_a"); break;
             default:
         }
     };
 }
 
+function initHoversAnimate(cursors) {
+    const CLs = [cursors.bigCursor.classList, cursors.smallCursor.classList]
+    new cursorSlide(CLs);
+    new cursorFull(CLs);
+    new cursorMagnet(CLs);
+};
+
 window.addEventListener('load', () => {
     const smallCursor = document.querySelector(".small_cursor");
     const bigCursor = document.querySelector(".big_cursor");
     const cursors = { smallCursor, bigCursor };
-    initCursorAnimate(cursors);
+    initP4DescSecScroll(cursors);
     initHoversAnimate(cursors);
 })

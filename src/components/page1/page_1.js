@@ -15,10 +15,10 @@ class Page1 extends React.Component {
         <div className="header">
           <div className="menu_list">
             <ul>
-              <li><a href="#page_2"><span className="menuIndex">01.</span><span className="menuText">vIsion</span></a></li>
-              <li><a href="#page_3"><span className="menuIndex">02.</span><span className="menuText">about us</span></a></li>
-              <li><a href="#page_4"><span className="menuIndex">03.</span><span className="menuText">blog</span></a></li>
-              <li><a href="#page_5"><span className="menuIndex">04.</span><span className="menuText">contact</span></a></li>
+              <li><a href="#page-2"><span className="menuIndex">01.</span><span className="menuText">vIsion</span></a></li>
+              <li><a href="#page-3"><span className="menuIndex">02.</span><span className="menuText">about us</span></a></li>
+              <li><a href="#page-4"><span className="menuIndex">03.</span><span className="menuText">blog</span></a></li>
+              <li><a href="#page-5"><span className="menuIndex">04.</span><span className="menuText">contact</span></a></li>
             </ul>
           </div>
 
@@ -44,6 +44,7 @@ class Page1 extends React.Component {
               <span>t</span>
               <span>y</span>
             </h2>
+            <br />
             <h1>
               <span>T</span>
               <span>h</span>

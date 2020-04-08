@@ -1,3 +1,231 @@
-.page_4 {
-  @extend %common;
+.p4-description {
+  margin-left: calc(100% / 6);
+  left: 0;
+  transition: left 1s ease;
+  h1 {
+    @extend %header-2;
+    color: $white;
+    margin-bottom: 7vh;
+  }
+  p {
+    @extend %paragraph;
+    width: 25vw;
+    margin-top: 3vh;
+    &:last-child {
+      width: calc(100% / 3);
+    }
+  }
+}
+
+.p4-description-sec {
+  position: absolute;
+  top: 3000px;
+  height: 100vh;
+  left: var(--p4-left, 50%);
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  opacity: 1;
+  transition: opacity 1s ease-in 0.1s;
+  .sec {
+    scroll-snap-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 20vh 0 15vh 0;
+    &:first-child {
+      margin-top: 30vh;
+    }
+    h6 {
+      @include absolute(20%, 0, 0, -25%);
+      @include text-style(280px, 700, initial, initial);
+      @include text-border(2px);
+      width: 1%;
+      opacity: 0.3;
+    }
+    .sec_desc {
+      position: relative;
+      margin-left: calc(100% / 3);
+      width: 50%;
+      h1 {
+        display: contents;
+        text-transform: uppercase;
+        color: $light-blue;
+        font-size: 28px;
+      }
+      p {
+        @extend %paragraph;
+        margin-top: 5%;
+      }
+    }
+  }
+ 
+}
+
+.classTest {
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease-out;
+
+}
+
+@include mq(large) {
+  .p4-description {
+    margin-left: 10vw;
+    h1 {
+      font-size: 48px;
+    }
+    p {
+      font-size: 15px;
+      width: 48vw;
+      &:last-child {
+        width: 48vw;
+      }
+    }
+  }
+}
+
+@include mq(medium) {
+  .p4-description {
+    margin-left: 10vw;
+    h1 {
+      letter-spacing: 1px;
+      font-size: 48px;
+    }
+    .arrow {
+      position: absolute;
+      top: 15vh;
+      left: 42vw;
+      width: 25vw;
+      height: 5px;
+      .arrow__line {
+        display: block;
+        position: absolute;
+        transform: translate(0%, -50%);
+        top: 50%;
+        left: -28%;
+        width: 50%;
+        height: 20%;
+        transform: scale(1);
+        transform-origin: left;
+        background-color: $light-blue;
+        animation: anim-line 3s infinite;
+
+        @keyframes anim-line {
+          0% {
+            left: -28%;
+            width: 50%;
+          }
+          30% {
+            left: -28%;
+            width: 50%;
+          }
+          50% {
+            left: 70%;
+            width: 0%;
+          }
+          51% {
+            left: -40%;
+            width: 0%;
+          }
+          61% {
+            left: -40%;
+            width: 0%;
+          }
+          75% {
+            left: -28%;
+            width: 50%;
+          }
+        }
+      }
+      .arrow__triangle {
+        position: absolute;
+        top: -40%;
+        right: 77%;
+        transform: translate(0%, -50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid $light-blue;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        animation: anim-triangle 3s infinite;
+        transform-origin: left center;
+
+        @keyframes anim-triangle {
+          0% {
+            transform: scale(1);
+          }
+          32% {
+            transform: scale(1);
+          }
+          33% {
+            transform: scale(0);
+          }
+          61% {
+            transform: scale(0);
+          }
+          75% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+      }
+    }
+    p {
+      font-size: 16px;
+      width: 60vw;
+      &:last-child {
+        width: 60vw;
+      }
+    }
+  }
+  .p4-description-sec {
+    .sec {
+      padding: 20vh 0 7vh 0;
+      &:first-child {
+        margin-top: 6vh;
+      }
+      h6 {
+        left: 10%;
+        transform: translateY(-25%);
+        font-size: 260px;
+      }
+      .sec_desc {
+        margin: 0 auto;
+        width: 70%;
+        h1 {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+@include mq(small) {
+  .p4-description {
+    margin-left: 5vw;
+    h1 {
+      font-size: 32px;
+    }
+
+    .arrow {
+      top: 15vh;
+      left: 59vw;
+      width: 40vw;
+      height: 5px;
+      .arrow__triangle {
+        top: -30%;
+        right: 77%;
+      }
+    }
+
+    p {
+      width: 90vw;
+      &:last-child {
+        width: 90vw;
+      }
+    }
+  }
 }

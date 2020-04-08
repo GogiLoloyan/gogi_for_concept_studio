@@ -1,3 +1,177 @@
-.page_5 {
-  @extend %common;
+.page-5 {
+  .page-5__content {
+    width: 100vw;
+    height: 100vh;
+    margin-left: calc(100% / 6);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    .header {
+      width: 60%;
+      color: $white;
+      p {
+        font-size: 25px;
+        opacity: 0.8;
+        width: 60%;
+        margin-bottom: 3vh;
+      }
+      h1 {
+        @extend %header-2;
+        letter-spacing: 5px;
+      }
+    }
+    .figur {
+      position: relative;
+      margin-top: 10vh;
+      .figur__content {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        .d {
+          position: absolute;
+          border: 1px solid #00e2ff;
+          border-radius: 3%;
+          width: 100%;
+          height: 59%;
+          &:nth-child(1) {
+            border-top: 1px;
+            border-bottom: 1px;
+            transform: rotate(60deg);
+          }
+          &:nth-child(2) {
+            border-top: 1px;
+            border-bottom: 1px;
+            transform: rotate(120deg);
+          }
+          &:nth-child(3) {
+            border-top: 1px;
+            border-bottom: 1px;
+          }
+        }
+        .outer-circle {
+          position: absolute;
+          width: 103%;
+          height: 103%;
+          left: -1%;
+          top: -22%;
+          .inner-circle {
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #00e2ff;
+            clip-path: circle(50%);
+            animation: animateCircle 4s cubic-bezier(0.13, 0.37, 0.63, 0.87)
+              infinite;
+            p {
+              text-align: left;
+              color: rgb(0, 34, 63);
+              font-size: 16px;
+              letter-spacing: 1px;
+            }
+            svg {
+              position: relative;
+              transform: rotate(45deg);
+              right: -25px;
+              stroke-width: 0.3px;
+              stroke: rgb(0, 34, 63, 0.7);
+            }
+            
+          }
+        }
+      }
+    }
+  }
+}
+@include mq(large) {
+  .page-5 {
+    .page-5__content {
+      width: 90vw;
+      margin-left: 10vw;
+      .header {
+        width: 55%;
+        p {
+          font-size: 20px;
+          width: 75%;
+        }
+        h1 {
+          font-size: 40px;
+          letter-spacing: 3px;
+        }
+      }
+      .figur {
+        margin-left: 10%;
+        .figur__content {
+          width: 144px;
+          height: 144px;
+          .outer-circle {
+            .inner-circle {
+              p {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mq(medium) {
+  .page-5 {
+    .page-5__content {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      .header {
+        width: 80%;
+      }
+      .figur {
+        margin: 10vh 10% 0 0;
+        align-self: flex-end;
+      }
+    }
+  }
+}
+@include mq(small) {
+  .page-5 {
+    .page-5__content {
+      margin-left: 5vw;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      .header {
+        width: 100%;
+        p {
+          font-size: 20px;
+          width: 80%;
+        }
+        h1 {
+          font-size: 32px;
+          line-height: 100%;
+          letter-spacing: 1px;
+        }
+      }
+      .figur {
+        align-self: flex-end;
+        .figur__content {
+          width: 120px;
+          height: 120px;
+          .outer-circle {
+            .inner-circle {
+              p {
+                font-weight: normal;
+                letter-spacing: 0;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

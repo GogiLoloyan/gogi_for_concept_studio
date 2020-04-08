@@ -25,6 +25,25 @@
   }
 }
 
+///////////////////////////////
+
+@keyframes animateCircle {
+  0% {
+    transform: translate(1%, 5%);
+  }
+  33% {
+    transform: translate(16%, 5%);
+  }
+  66% {
+    transform: translate(9%, 17%);
+  }
+  100% {
+    transform: translate(1%, 5%);
+  }
+}
+
+//////////////////////////////////
+
 @keyframes animateCursor {
   from {
     transform: scale(1);

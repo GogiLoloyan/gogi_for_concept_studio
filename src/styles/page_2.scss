@@ -1,13 +1,13 @@
-.page_2 {
+.page-2 {
   @extend %common;
-  .back_grid {
+  .back-grid {
     @include absolute(50%, -50%, 50%, -50%);
     width: calc(100% / 6 * 4);
     height: 100vh;
 
     display: grid;
     grid-template-columns: 40% 10% 50%;
-    grid-template-rows: 4% 46% 36% 10% 4%;
+    grid-template-rows: 4% 46% 40% 6% 4%;
     grid-template-areas:
       " .  img  ."
       " man img desc"
@@ -32,7 +32,7 @@
       }
     }
 
-    .body_images {
+    .body-images {
       grid-area: img;
       position: relative;
       display: flex;
@@ -52,56 +52,48 @@
     }
 
     .description {
-      grid-area: desc;
       position: relative;
-
+      grid-area: desc;
       overflow: hidden;
-      overflow-y: scroll;
-      scroll-behavior: smooth;
-      scroll-snap-type: y mandatory;
       .sec {
-        scroll-snap-align: start;
-        display: grid;
         position: relative;
-        height: 82vh;
-        grid-template-columns: 100%;
-        grid-template-rows: 55vh 27vh;
-        grid-template-areas:
-          "header"
-          "par";
-        scroll-snap-align: start;
-        padding-left: 3%;
-        padding-right: 3%;
+        height: 100%;
+        padding: 0 3%;
         header {
-          grid-area: header;
           position: relative;
-          left: -8rem;
+          height: 64%;
+          left: -1rem;
           display: flex;
-          align-items: center;
-          h1 {
+          text-align: right;
+          align-items: flex-end;
+          justify-content: flex-end;
+          h6 {
             @include text-style(440px, 700, initial, initial);
             @include text-border(2px);
-            left: -8rem;
+            position: absolute;
+            align-self: center;
+            left: -120px;
             opacity: 0.3;
+            z-index: -1;
           }
-          h2 {
-            @include absolute(initial, 65%, initial, 65%);
-            right: 0;
+          h1 {
+            @extend %header-2;
             color: #00e2ff;
-            text-transform: uppercase;
-            text-align: right;
-            font-size: 60px;
           }
         }
-        p {
-          @extend %paragraph;
-          display: inline-block;
-          grid-area: par;
-          padding-top: 3vh;
-          padding-right: 3%;
+        article {
+          display: flex;
+          position: relative;
+          height: 36%;
+          align-items: center;
+          p {
+            @extend %paragraph;
+            padding-right: 3%;
+          }
         }
       }
     }
+
     .nav {
       grid-area: menu;
       align-self: flex-end;
@@ -115,18 +107,17 @@
         li {
           display: contents;
           color: $white;
-          a {
+          span {
             @include text-style(16px, 700, 0.7px, auto);
-            text-decoration: none;
             color: inherit;
             opacity: 0.9;
             padding: 2%;
             transition: all 0.3s;
           }
-          &:hover {
+          .active {
             color: $light-blue;
           }
-          &:active {
+          &:hover {
             color: $light-blue;
           }
         }
@@ -135,31 +126,39 @@
   }
 
   @include mq(large) {
-    .back_grid {
-      width: calc(100% / 10 * 8);
+    .back-grid {
+      width: 80%;
 
       .img-man {
         img {
           height: 90%;
         }
       }
+
       .description {
         .sec {
-          h1 {
-            font-size: 340px;
+          header {
+            h6 {
+              font-size: 400px;
+            }
+            h1 {
+              font-size: 60px;
+            }
           }
-          h2 {
-            font-size: 45px;
-          }
-          p {
-            font-size: 12px;
+          article {
+            p {
+              font-size: 14px;
+            }
           }
         }
       }
-      ul {
-        li {
-          a {
-            font-size: 14px;
+
+      .nav {
+        ul {
+          li {
+            span {
+              font-size: 14px;
+            }
           }
         }
       }
@@ -167,52 +166,56 @@
   }
 
   @include mq(medium) {
-    .back_grid {
+    .back-grid {
       width: calc(100% / 14 * 12);
 
       grid-template-columns: 25% 75%;
       grid-template-areas:
-        "  .  ."
-        " . desc"
-        " . desc"
-        " . menu"
-        ".  .";
+        " img  ."
+        " img desc"
+        " img desc"
+        " img menu"
+        " img  .";
 
       .img-man {
         display: none;
       }
-      .images {
+      .body-images {
+        grid-area: img;
+        height: 100vh;
+        padding: 0;
+        width: 100%;
+        border-right: $grid-border;
         img {
           display: none;
         }
-      }
-      .description {
-        border-left: $grid-border;
-      }
-      ul {
-        border-left: $grid-border;
       }
     }
   }
 
   @include mq(small) {
-    .back_grid {
+    .back-grid {
       width: calc(100% / 14 * 13);
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        "    ."
-        "  desc"
-        "  desc"
-        "  menu"
-        " .";
+      grid-template-columns: 1% 99%;
 
       .description {
         .sec {
-          h2 {
-            font-size: 40px;
+          header {
+            height: 55%;
+            h6 {
+              font-size: 350px;
+              left: -100px;
+            }
+            h1 {
+              letter-spacing: 1px;
+              font-size: 32px;
+            }
           }
-          p {
-            font-size: 12px;
+          article {
+            height: 45%;
+            p {
+              font-size: 14px;
+            }
           }
         }
       }
