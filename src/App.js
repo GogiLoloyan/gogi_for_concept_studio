@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="main">
       <Page1 />
-      <Parallax ref={inputEl} pages={5} vertically scrolling={false}>
+      <Parallax ref={inputEl} pages={5} vertically scrolling={true}>
         <Page2 offset={0} onWheel={scroll}/>
         <Page3 offset={1} onWheel={scroll}/>
         <Page4 offset={2} onWheel={scroll}/>
