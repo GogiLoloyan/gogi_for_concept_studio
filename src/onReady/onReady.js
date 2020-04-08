@@ -63,17 +63,14 @@ function initScrollLef(DOM) {
             p4DescSec.removeEventListener("touchend", _onTouchEnd);
         }
     }
-    const minDistance = 50;
+    const minDistance = 30;
     let swiping;
 
     const _onTouchStart = e => {
-        console.log(1)
       swiping = e.changedTouches[0].clientX;
     }
 
     const _onTouchEnd = e => {
-        console.log(2)
-
       const delta = swiping - e.changedTouches[0].clientX;
       if(delta && Math.abs(delta) > minDistance){
         !isClicked && delta > 0 && onRigth();
