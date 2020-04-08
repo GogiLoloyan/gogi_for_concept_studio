@@ -4,22 +4,39 @@ import data from "./data";
 import Description from "./description";
 
 class Page4 extends React.Component {
-  handleOnWheel = e => {
-    e.deltaY > 0 && this.props.onWheel(this.props.offset + 1);
-    e.deltaY < 0 && this.props.onWheel(this.props.offset - 1);
+  minDistance = 50;
+
+  _OnWheel = e => {
+    const delta = e.deltaY || e;
+    delta > 0 && this.props.onWheel(this.props.offset + 1);
+    delta < 0 && this.props.onWheel(this.props.offset - 1);
   };
-  handleRigthOnWheel = e => {
-    return false;
-  };
+
+  _onTouchStart = e => {
+    this.swiping = e.changedTouches[0].clientY;
+  }
+
+  _onTouchEnd = e => {
+    const diff = this.swiping - e.changedTouches[0].clientY;
+    diff && Math.abs(diff) > this.minDistance && this._OnWheel(diff);
+  }
+
   render() {
+    
+    const events = {
+      onWheel: this._OnWheel,
+      onTouchStart: this._onTouchStart,
+      onTouchEnd: this._onTouchEnd
+    };
+
     return (
       <>
-        <Parallax.Layer offset={this.props.offset} speed={0} onWheel={this.handleOnWheel}></Parallax.Layer>
+        <Parallax.Layer offset={this.props.offset} speed={0} {...events}></Parallax.Layer>
         <Parallax.Layer
           className="p4-description"
           offset={this.props.offset + 0.1}
           speed={0.2}
-          onWheel={this.handleOnWheel}
+          {...events}
         >
           <h1>How<br />Partnership<br />works</h1>
           <div className="arrow">

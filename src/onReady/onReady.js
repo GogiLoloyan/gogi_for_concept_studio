@@ -28,6 +28,7 @@ let isClicked = false;
 
 function initScrollLef(DOM) {
     const { p4DescSec, p4Desc } = DOM;
+    
     let winWidth;
     window.addEventListener('resize', handleResize);
    
@@ -41,8 +42,11 @@ function initScrollLef(DOM) {
 
             p4Desc.addEventListener("click", onRigth);
             p4Desc.addEventListener("wheel", onWeelRigth);
+            p4Desc.addEventListener("touchstart", _onTouchStart);
+            p4Desc.addEventListener("touchend", _onTouchEnd);
             p4DescSec.addEventListener("click", onLeft);
             p4DescSec.addEventListener("wheel", onWeelLeft);
+            p4DescSec.addEventListener("touchend", _onTouchEnd);
         } else if(isSmall && winWidth > 1024){
             isSmall = false;
             p4Desc.style.left = 0;
@@ -51,9 +55,27 @@ function initScrollLef(DOM) {
 
             p4Desc.removeEventListener("click", onRigth);
             p4Desc.removeEventListener("wheel", onWeelRigth);
+            p4Desc.removeEventListener("touchstart", _onTouchStart);
+            p4Desc.removeEventListener("touchend", _onTouchEnd);
             p4DescSec.removeEventListener("click", onLeft);
             p4DescSec.removeEventListener("wheel", onWeelLeft);
+            p4DescSec.removeEventListener("touchstart", _onTouchStart);
+            p4DescSec.removeEventListener("touchend", _onTouchEnd);
         }
+    }
+    const minDistance = 50;
+    let swiping;
+
+    const _onTouchStart = e => {
+      swiping = e.changedTouches[0].clientY;
+    }
+
+    const _onTouchEnd = e => {
+      const delta = swiping - e.changedTouches[0].clientY;
+      if(delta && Math.abs(delta) > minDistance){
+        !isClicked && delta > 0 && onRigth();
+        isClicked && delta < 0 && onLeft();
+      }
     }
 
     const onWeelLeft = e => isClicked && e.deltaX < 0 && onLeft();
