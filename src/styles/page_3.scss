@@ -82,6 +82,7 @@
     }
   }
   .page-3__slide-outer {
+    height: 250px;
     .slide-inner {
       left: calc(100vw / 10);
       .slide {
@@ -107,6 +108,7 @@
 }
 @include mq(medium) {
   .page-3__slide-outer {
+    height: 220px;
     .slide-inner {
       left: calc(100vw / 10);
       .slide {
@@ -124,6 +126,7 @@
 }
 @include mq(small) {
   .page-3__header {
+    height: 200px;
     margin-left: calc(100vw / 28);
     .header {
       h1 {
