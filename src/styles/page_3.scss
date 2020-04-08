@@ -27,7 +27,7 @@
     height: 100%;
     .draggable {
       position: absolute;
-      height: 100%;
+      height: 300px;
       width: 100%;
       z-index: 2000;
     }
@@ -85,6 +85,9 @@
     height: 250px;
     .slide-inner {
       left: calc(100vw / 10);
+      .draggable{
+        height: 250px;
+      }
       .slide {
         .slide__item {
           height: 300px;
@@ -110,6 +113,9 @@
   .page-3__slide-outer {
     height: 220px;
     .slide-inner {
+      .draggable{
+        height: 220px;
+      }
       left: calc(100vw / 10);
       .slide {
         .slide__item {
@@ -126,7 +132,6 @@
 }
 @include mq(small) {
   .page-3__header {
-    height: 200px;
     margin-left: calc(100vw / 28);
     .header {
       h1 {
@@ -136,8 +141,12 @@
     }
   }
   .page-3__slide-outer {
+    height: 200px;
     .slide-inner {
       left: calc(100% / 28);
+      .draggable{
+        height: 200px;
+      }
       .slide {
         .slide__item {
           height: 230px;
