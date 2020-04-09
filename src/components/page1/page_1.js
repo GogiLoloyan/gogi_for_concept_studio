@@ -1,10 +1,10 @@
 import React from "react";
-// import withGsapScroll from "./withGsapScroll";
+import withNavScroll from "../../HOC/withNavScrollTo";
 
 class Page1 extends React.Component { 
   render() {
     return (
-      <div className="page_1" id="page_1">
+      <div className="page_1" id="page_1" ref = {this.props.pageRef}>  
         <div className="back_grid">
           <div></div>
           <div></div>
@@ -14,7 +14,7 @@ class Page1 extends React.Component {
 
         <div className="header">
           <div className="menu_list">
-            <ul>
+            <ul  ref={this.props.listRef}>
               <li><a href="#page-2"><span className="menuIndex">01.</span><span className="menuText">vIsion</span></a></li>
               <li><a href="#page-3"><span className="menuIndex">02.</span><span className="menuText">about us</span></a></li>
               <li><a href="#page-4"><span className="menuIndex">03.</span><span className="menuText">blog</span></a></li>
@@ -87,6 +87,4 @@ class Page1 extends React.Component {
   }
 }
 
-// export default withGsapScroll(Page1);
-export default Page1;
-
+export default withNavScroll(Page1);

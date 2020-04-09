@@ -1,11 +1,10 @@
 import React from "react";
-import data from '../data';
+import data from '../../data';
 
 class Description extends React.Component {
     state = { index: 0 }
-    navigation(index) {
-        this.setState({ index })
-    }
+    navigation = index => this.setState({ index })
+    
     render() {
         const { index } = this.state;
         const { header_1, header_2, description } = data[index];
@@ -21,7 +20,6 @@ class Description extends React.Component {
                             <p>{description}</p>
                         </article>
                     </section>
-
                 </div>
 
                 <nav className="nav">

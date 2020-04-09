@@ -1,5 +1,4 @@
 .page-2 {
-  @extend %common;
   .back-grid {
     @include absolute(50%, -50%, 50%, -50%);
     width: calc(100% / 6 * 4);
@@ -47,7 +46,7 @@
         width: 5vh;
         height: 5vh;
         opacity: 0;
-        @include letter-animate(1, 6, 1.5s, 0s, 20);
+        @include letter-animate(1, 6, 1.5s, 0.4s, 20);
       }
     }
 

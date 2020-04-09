@@ -1,43 +1,16 @@
 import React from "react";
 import { Parallax } from "react-spring/renderprops-addons";
-import data from "./data";
-import Description from "./description";
+
+import withScroll from "../../HOC/withScroll";
 
 class Page4 extends React.Component {
-  minDistance = 50;
-
-  _OnWheel = e => {
-    const delta = e.deltaY || e;
-    delta > 0 && this.props.onWheel(this.props.offset + 1);
-    delta < 0 && this.props.onWheel(this.props.offset - 1);
-  };
-
-  _onTouchStart = e => {
-    this.swiping = e.changedTouches[0].clientY;
-  }
-
-  _onTouchEnd = e => {
-    const diff = this.swiping - e.changedTouches[0].clientY;
-    diff && Math.abs(diff) > this.minDistance && this._OnWheel(diff);
-  }
 
   render() {
-    
-    const events = {
-      onWheel: this._OnWheel,
-      onTouchStart: this._onTouchStart,
-      onTouchEnd: this._onTouchEnd
-    };
-
+    const { offset, touchEvents} = this.props;
     return (
       <>
-        <Parallax.Layer offset={this.props.offset} speed={0} {...events}></Parallax.Layer>
-        <Parallax.Layer
-          className="p4-description"
-          offset={this.props.offset + 0.1}
-          speed={0.2}
-          {...events}
-        >
+        <Parallax.Layer offset={offset} {...touchEvents} />
+        <Parallax.Layer className="p4-description" speed={0.2} offset={offset + 0.1} {...touchEvents}>
           <h1>How<br />Partnership<br />works</h1>
           <div className="arrow">
             <div className="arrow__line"></div>
@@ -62,4 +35,4 @@ class Page4 extends React.Component {
   }
 }
 
-export default Page4;
+export default withScroll(Page4, "up and down");

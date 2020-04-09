@@ -33,7 +33,7 @@ class Slide {
     init() {
         this.position = {previous: 0, current: this.dragPosition};
         this.render = () => {
-            this.position.previous = MathUtils.lerp(this.position.previous, this.position.current, 0.5);
+            this.position.previous = MathUtils.lerp(this.position.previous, this.position.current, 0.08);
             TweenMax.set(this.DOM.strip, {x: this.position.previous});
             requestAnimationFrame(this.render);  
         };

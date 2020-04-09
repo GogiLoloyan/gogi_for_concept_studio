@@ -7,13 +7,13 @@ $light-blue: #00e2ff;
 $grid-border: 1px solid rgba(0, 226, 255, 0.1);
 
 %common {
-  position: relative;
-  height: 100vh;
+  background: #000e1a
+  linear-gradient(to right, rgba(1, 155, 224, 0.34), rgba(1, 76, 137, 0.34));
 }
 
 %paragraph{
   color: $white;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.7;
 }
 

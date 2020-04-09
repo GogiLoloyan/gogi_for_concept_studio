@@ -7,14 +7,9 @@ function initP4DescSecScroll(DOM) {
     const p4DescSec = DOM.p4DescSec.style;
     const lerp = (a, b, n) => (1 - n) * a + n * b;
 
-    let winHeight;
-    const calcWinsize = () => winHeight = window.innerHeight;
-    calcWinsize();
-    window.addEventListener('resize', calcWinsize);
-
     const render = () => {
-            top =  p4Desc.getBoundingClientRect().top + winHeight * 9 / 10;
-            lastTop = lerp(lastTop, top, 0.3);  
+            top =  p4Desc.getBoundingClientRect().top ;
+            lastTop = lerp(lastTop, top, 0.5);  
             p4DescSec.top = lastTop + "px";
         requestAnimationFrame(render);
     };
@@ -26,7 +21,7 @@ function initP4DescSecScroll(DOM) {
 let isSmall = false;
 let isClicked = false;
 
-function initScrollLef(DOM) {
+function initScrollRigthToLeft(DOM) {
     const { p4DescSec, p4Desc } = DOM;
     
     let winWidth;
@@ -41,11 +36,11 @@ function initScrollLef(DOM) {
             p4DescSec.style.setProperty("--p4-left", 0);
 
             p4Desc.addEventListener("click", onRigth);
-            p4Desc.addEventListener("wheel", onWeelRigth);
+            p4Desc.addEventListener("wheel", _onWeelRigth);
             p4Desc.addEventListener("touchstart", _onTouchStart);
             p4Desc.addEventListener("touchend", _onTouchEnd);
             p4DescSec.addEventListener("click", onLeft);
-            p4DescSec.addEventListener("wheel", onWeelLeft);
+            p4DescSec.addEventListener("wheel", _onWeelLeft);
             p4DescSec.addEventListener("touchstart", _onTouchStart);
             p4DescSec.addEventListener("touchend", _onTouchEnd);
         } else if(isSmall && winWidth > 1024){
@@ -55,17 +50,18 @@ function initScrollLef(DOM) {
             p4DescSec.style.removeProperty("--p4-left", 0);
 
             p4Desc.removeEventListener("click", onRigth);
-            p4Desc.removeEventListener("wheel", onWeelRigth);
+            p4Desc.removeEventListener("wheel", _onWeelRigth);
             p4Desc.removeEventListener("touchstart", _onTouchStart);
             p4Desc.removeEventListener("touchend", _onTouchEnd);
             p4DescSec.removeEventListener("click", onLeft);
-            p4DescSec.removeEventListener("wheel", onWeelLeft);
+            p4DescSec.removeEventListener("wheel", _onWeelLeft);
             p4DescSec.removeEventListener("touchstart", _onTouchStart);
             p4DescSec.removeEventListener("touchend", _onTouchEnd);
         }
     }
-    const minDistance = 30;
+
     let swiping;
+    const minDistance = 30;
 
     const _onTouchStart = e => {
       swiping = e.changedTouches[0].clientX;
@@ -79,8 +75,8 @@ function initScrollLef(DOM) {
       }
     }
 
-    const onWeelLeft = e => isClicked && e.deltaX < 0 && onLeft();
-    const onWeelRigth = e => !isClicked && e.deltaX > 0 && onRigth();
+    const _onWeelLeft = e => isClicked && e.deltaX < 0 && onLeft();
+    const _onWeelRigth = e => !isClicked && e.deltaX > 0 && onRigth();
 
     const onRigth = () => {
         isClicked = true;
@@ -102,12 +98,11 @@ window.addEventListener('load', () => {
     const p4Desc = document.querySelector(".p4-description");
     const p4 = { p4Desc, p4DescSec };
     initP4DescSecScroll(p4);
-    initScrollLef(p4)
+    initScrollRigthToLeft(p4)
 })
 
 /////////////////////////////////////////////////
 
 window.addEventListener('load',()=>{
     document.querySelector(".page_1").style.setProperty("--play", "running");
-    document.querySelector(".page-2").style.setProperty("--play", "running");
 })

@@ -5,22 +5,22 @@
 
 * {
   margin: 0;
+  cursor: none;
   &::-webkit-scrollbar {
     display: none;
   }
-  cursor: none;
 }
 
 body {
   font-family: "Cera";
   font-weight: 500;
   font-style: normal;
+  overflow-y: hidden;
+}
+
+.parallax {
   background: #000e1a
   linear-gradient(to right, rgba(1, 155, 224, 0.34), rgba(1, 76, 137, 0.34));
-  overflow-y: hidden;
-  // @media screen and (max-width: 755) {
-  //   overflow-y: scroll;
-  // }
 }
 
 .main {
