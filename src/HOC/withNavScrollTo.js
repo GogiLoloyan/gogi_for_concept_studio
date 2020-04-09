@@ -12,7 +12,6 @@ function withNavScroll(Page1) {
 
       window.addEventListener("resize", () => {
         this.winHeight = window.innerHeight;
-        console.log( this.pageStyle.top);
         switch(this.pageStyle.top){
           case "":
           case "0px": break;
