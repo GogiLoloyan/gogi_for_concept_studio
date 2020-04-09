@@ -6,12 +6,13 @@
     margin: 0 0 0 calc(100% / 12);
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
-    .footer__main {
+    .footer__main { 
       position: relative;
       width: 100%;
-      height: 80vh;
+      height: 75vh;
+      padding-bottom: 5vh;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -192,9 +193,11 @@
   @include mq(medium) {
     .footer {
       .footer__main {
+        height: 80vh;
+        padding-bottom: 0;
         .footer__input {
           width: 100%;
-          height: 40vh;
+          height: 35vh;
           min-height: 200px;
           margin-right: 15px;
           h1 {

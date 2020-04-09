@@ -12,7 +12,12 @@ function withNavScroll(Page1) {
 
       window.addEventListener("resize", () => {
         this.winHeight = window.innerHeight;
-        this.pageStyle.top != 0 && this.changePageTop();
+        console.log( this.pageStyle.top);
+        switch(this.pageStyle.top){
+          case "":
+          case "0px": break;
+          default: this.changePageTop();
+        }
       });
     }
 
