@@ -1,4 +1,6 @@
 import React, { Component, createRef as newRef } from "react";
+import changePageTop from "../components/page1/changePageTop";
+
 
 function withNavScroll(Page1) {
   return class extends Component {
@@ -8,22 +10,8 @@ function withNavScroll(Page1) {
       this.listRef = newRef();
       this.pageRef = newRef();
       this.animPlayed = false;
-      this.winHeight = window.innerHeight;
-
-      window.addEventListener("resize", this.updatePage);
+      this.lastTop = 0;
     }
-
-    updatePage = () => {
-      this.winHeight = window.innerHeight;
-      switch (this.pageStyle.top) {
-        case "": case "0px": break;
-        default: this.changePageTop();
-      }
-    };
-
-    changePageTop = () => {
-      this.pageStyle.top = `-${this.winHeight}px`;
-    };
 
     playAnimPage2 = () => {
       this.anim.setProperty("--play", "running");
@@ -32,12 +20,11 @@ function withNavScroll(Page1) {
 
     srollTo = i => {
       this.animPlayed || this.playAnimPage2();
-      this.changePageTop();
+      changePageTop(this.pageRef.current.style)
       this.props.scroll(i);
     };
 
     componentDidMount() {
-      this.pageStyle = this.pageRef.current.style;
       const links = this.listRef.current.children;
       links.forEach = Array.prototype.forEach;
 

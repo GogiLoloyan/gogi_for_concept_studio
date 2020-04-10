@@ -1,4 +1,5 @@
 import React from 'react'
+import changeMainPageTop from '../components/page1/changePageTop';
 
 function withScroll(Component, up_Down){
  
@@ -20,7 +21,7 @@ function withScroll(Component, up_Down){
                 break;
               case "down":  
                 deltaY > 0 && onWheel(offset + 1);
-                deltaY < 0 && (this.page1.top = 0);
+                deltaY < 0 && changeMainPageTop(); 
                 break;
               case "up and down": 
                 deltaY > 0 && onWheel(offset + 1);

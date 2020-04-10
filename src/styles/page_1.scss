@@ -1,11 +1,9 @@
 .page_1 {
   position: fixed;
   height: 100vh;
-  top:0;
   z-index: 1000;
   background: #000e1a
   linear-gradient(to right, rgba(1, 155, 224, 0.34), rgba(1, 76, 137, 0.34));
-  transition: top 1s cubic-bezier(0.72, 0.02, 0.18, 0.98);
 
   .back_grid {
     @include absolute(50%, -50%, 0);
