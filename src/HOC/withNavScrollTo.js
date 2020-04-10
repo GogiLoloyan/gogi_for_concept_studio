@@ -10,24 +10,25 @@ function withNavScroll(Page1) {
       this.animPlayed = false;
       this.winHeight = window.innerHeight;
 
-      window.addEventListener("resize", () => {
-        this.winHeight = window.innerHeight;
-        switch(this.pageStyle.top){
-          case "":
-          case "0px": break;
-          default: this.changePageTop();
-        }
-      });
+      window.addEventListener("resize", this.updatePage);
     }
 
+    updatePage = () => {
+      this.winHeight = window.innerHeight;
+      switch (this.pageStyle.top) {
+        case "": case "0px": break;
+        default: this.changePageTop();
+      }
+    };
+
     changePageTop = () => {
-      this.pageStyle.top = -this.winHeight + "px";
+      this.pageStyle.top = `-${this.winHeight}px`;
     };
 
     playAnimPage2 = () => {
-        this.anim.setProperty("--play", "running");
-        this.animPlayed = true;
-    }
+      this.anim.setProperty("--play", "running");
+      this.animPlayed = true;
+    };
 
     srollTo = i => {
       this.animPlayed || this.playAnimPage2();
