@@ -52,7 +52,7 @@
             }
             .menuText {
               margin-left: 15px;
-              font-size: 13px;
+              font-size: 16px;
               color: $white;
               text-transform: lowercase;
               transition: letter-spacing 200ms ease-in-out;
@@ -109,8 +109,17 @@
       width: calc(100% / 10 * 8);
     }
     .header {
-      width: calc(100% / 10 * 8);
-      grid-template-rows: 36% 48% 26%;
+      .menu_list {
+        ul {
+          li {
+            a {
+              .menuIndex {
+                font-size: 26px;
+              }
+            }
+          }
+        }
+      }
       .header_text {
         margin-left: 1%;
         h2 {
@@ -123,7 +132,7 @@
       }
       .paragraf_text {
         p {
-          font-size: 15px;
+          font-size: 16px;
         }
       }
     }
@@ -140,7 +149,7 @@
         ". . . menu"
         "header header header header"
         ". paragrf paragrf paragrf";
-
+    
       .header_text {
         margin-left: 2%;
         h2 {
@@ -149,11 +158,6 @@
         h1 {
           @include text-style(51px, 700, 3px, 110%);
           @include text-border(1.5px);
-        }
-      }
-      .paragraf_text {
-        p {
-          font-size: 15px;
         }
       }
     }
@@ -165,6 +169,17 @@
       grid-template-columns: repeat(2, 1fr);
       div:nth-child(odd) {
         display: none;
+      }
+    }
+    .menu_list {
+      ul {
+        li {
+          a {
+            .menuIndex {
+              font-size: 24px;
+            }
+          }
+        }
       }
     }
     .header {
@@ -179,16 +194,11 @@
       .header_text {
         margin-left: 2%;
         h2 {
-          @include text-style(25px, 400, 1.2px, 110%);
+          @include text-style(24px, 400, 1.2px, 110%);
         }
         h1 {
-          @include text-style(32px, 700, 3px, 110%);
+          @include text-style(31px, 700, 3px, 110%);
           @include text-border(1px);
-        }
-      }
-      .paragraf_text {
-        p {
-          font-size: 15px;
         }
       }
     }
