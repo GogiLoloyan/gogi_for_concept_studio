@@ -10,13 +10,13 @@ class Page3 extends React.Component {
     const { offset, touchEvents} = this.props;
     return (
       <>
-        <Parallax.Layer offset={offset} {...touchEvents} />
-        <Parallax.Layer className="page-3__header" speed={0.2} offset={offset} {...touchEvents}>
+        <Parallax.Layer className="common_parallax" offset={offset} {...touchEvents} />
+        <Parallax.Layer className="page-3__header common_parallax " speed={0.2} offset={offset} {...touchEvents}>
           <div className="header">
             <h1>Industries we<br />help</h1>
           </div>
         </Parallax.Layer>
-        <Parallax.Layer className="page-3__slide-outer" speed={0.4}  offset={offset + 0.4} {...touchEvents}>
+        <Parallax.Layer className="page-3__slide-outer common_parallax" speed={0.4}  offset={offset + 0.4} {...touchEvents}>
           <div className="slide-inner">
             <div className="draggable"></div>
             <div className="slide">

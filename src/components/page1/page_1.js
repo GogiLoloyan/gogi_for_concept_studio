@@ -5,7 +5,7 @@ import Video from "../Video";
 
 class Page1 extends React.Component { 
   render() {
-    const { pageRef, listRef, videoRef, onWheel } = this.props;
+    const { pageRef, listRef, onWheel } = this.props;
     return (
       <div className="page_1" id="page_1" ref={pageRef} onWheel={onWheel}>  
         <div className="back_grid">
@@ -84,11 +84,12 @@ class Page1 extends React.Component {
             </p>
           </div>
         </div>
-        <Video videoRef={videoRef}/>
+        <Video />
       </div>
     );
   }
 }
 
 
-export default withReactScrollWheelHandler(withNavScroll(Page1));
+// export default window.innerWidth > 1320 ? withReactScrollWheelHandler(withNavScroll(Page1)): withNavScroll(Page1);
+export default  withReactScrollWheelHandler(withNavScroll(Page1));

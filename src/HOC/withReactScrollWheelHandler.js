@@ -12,6 +12,7 @@ function withReactScrollWheelHandler(Page1) {
       this.index = 0;
       this.flag = true;
     }
+
     componentDidMount() {
       window.addEventListener("load", () => {
         this.page = this.pageRef.current.style;
@@ -43,6 +44,7 @@ function withReactScrollWheelHandler(Page1) {
     //       break;
     //     case 2:
     //       changePageTop(this.page);
+    //       this.anim.setProperty("--play", "running");
     //       break;
     //     default:
     //   }

@@ -24,6 +24,22 @@ body {
   linear-gradient(to right, rgba(1, 155, 224, 0.34), rgba(1, 76, 137, 0.34));
 }
 
+// @include mq(large) {
+//   body{
+//     overflow-y: scroll;
+//   }
+//   // .parallax {
+//   //   height: 500vh !important;
+//   //   position: relative !important;
+//   // }
+
+//   // .common_parallax {
+//   //   position: relative !important;
+//   //   height: 100vh !important;
+//   // }
+  
+// }
+
 .main {
   @import "styles/cursor";
   @import "styles/video";

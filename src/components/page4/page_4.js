@@ -9,8 +9,8 @@ class Page4 extends React.Component {
     const { offset, touchEvents} = this.props;
     return (
       <>
-        <Parallax.Layer offset={offset} {...touchEvents} />
-        <Parallax.Layer className="p4-description" speed={0.2} offset={offset + 0.1} {...touchEvents}>
+        <Parallax.Layer className="common_parallax " offset={offset} {...touchEvents} />
+        <Parallax.Layer className="p4-description common_parallax " speed={0.2} offset={offset + 0.1} {...touchEvents}>
           <h1>How<br />Partnership<br />works</h1>
           <div className="arrow">
             <div className="arrow__line"></div>

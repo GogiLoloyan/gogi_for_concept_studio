@@ -12,7 +12,7 @@
   transition-duration: 0.4s;
   transition-timing-function: cubic-bezier(0.5, 0.5, 1, 0.25);
 
-  .video_back {
+  &_back {
     position: relative;
     background: url("../pictures/video.png") no-repeat;
     background-size: cover;
@@ -26,12 +26,14 @@
       padding: 1vw 0;
       opacity: 0;
       transition: all 0.6s ease;
+
       &::before {
         content: attr(data-text);
         @include absolute(50%, -50%, 0, -50%);
         color: $white;
         opacity: 0.8;
       }
+
       .arrow_svg {
         position: relative;
         margin: 0 -0.2vw;
@@ -48,27 +50,24 @@
 
   @include mq(large) {
     & {
-      position: relative !important;
-      top: 0 !important;
-      display: flex !important;
-      height: 100vh;
-      opacity: 1;
-      background: #000e1a
-        linear-gradient(
-          to right,
-          rgba(1, 155, 224, 0.34),
-          rgba(1, 76, 137, 0.34)
-        );
+      // position: relative !important;
+      // top: 0 !important;
+      // height: 50vh;
+      // width: 100vw;
+      // opacity: 1;
+      
       .video_back {
-        width: calc(100% / 10 * 8);
+        width: 80%;
       }
     }
   }
+
   @include mq(medium) {
     .video_back {
       width: calc(100% / 14 * 12);
     }
   }
+
   @include mq(small) {
     .video_back {
       width: calc(100% / 14 * 13);
@@ -76,19 +75,8 @@
   }
 }
 
-@keyframes arrow-animate {
-  0% {
-    top: 0;
-  }
 
-  50% {
-    top: 0.7vw;
-  }
-
-  100% {
-    top: 0;
-  }
-}
+/// only adding in scrolling time
 
 .half-page {
   width: 50vw;
@@ -108,4 +96,3 @@
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
 }
-

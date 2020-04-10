@@ -8,6 +8,7 @@ function withNavScroll(Page1) {
       super(props);
 
       this.listRef = newRef();
+      this.pageRef = newRef();
       this.animPlayed = false;
     }
 
@@ -18,7 +19,8 @@ function withNavScroll(Page1) {
 
     srollTo = i => {
       this.animPlayed || this.playAnimPage2();
-      changePageTop(this.props.pageRef.current.style);
+      const page = this.props.pageRef ? this.props.pageRef.current.style : this.pageRef.current.style;
+      changePageTop(page);
       this.props.scroll(i);
     };
 
@@ -39,6 +41,7 @@ function withNavScroll(Page1) {
         <Page1
           {...{
             listRef: this.listRef,
+            pageRef: this.props.pageRef || this.pageRef,
             ...this.props
           }}
         />

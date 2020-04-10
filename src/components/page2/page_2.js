@@ -9,7 +9,7 @@ class Page2 extends React.Component {
   render() {
     const { offset, touchEvents } = this.props;
     return (
-      <Parallax.Layer className="page-2" speed={0.2} offset={offset} {...touchEvents}>
+      <Parallax.Layer className="page-2 common_parallax" speed={0.2} offset={offset} {...touchEvents}>
         <BodyPageContent />
       </Parallax.Layer>
     );

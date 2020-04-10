@@ -9,10 +9,13 @@ import Page6 from "./page6/page_6";
 import Description from ".//page4/description";
 
 function ParallaxPages(props) {
-const { scroll, parallax } = props;
+
+  const { scroll, parallax } = props;
+  const winWidth = window.innerWidth;
+  
   return (
     <>
-      <Parallax className="parallax" ref={parallax} pages={5} vertically scrolling={false}>
+      <Parallax className="parallax" ref={parallax} pages={5} vertically scrolling={winWidth < 1320}>
         <Page2 offset={0} onWheel={scroll}/>
         <Page3 offset={1} onWheel={scroll}/>
         <Page4 offset={2} onWheel={scroll}/>
