@@ -1,10 +1,13 @@
 import React from "react";
 import withNavScroll from "../../HOC/withNavScrollTo";
+import withReactScrollWheelHandler from "../../HOC/withReactScrollWheelHandler";
+import Video from "../Video";
 
 class Page1 extends React.Component { 
   render() {
+    const { pageRef, listRef, videoRef, onWheel } = this.props;
     return (
-      <div className="page_1" id="page_1" ref = {this.props.pageRef}>  
+      <div className="page_1" id="page_1" ref={pageRef} onWheel={onWheel}>  
         <div className="back_grid">
           <div></div>
           <div></div>
@@ -14,7 +17,7 @@ class Page1 extends React.Component {
 
         <div className="header">
           <div className="menu_list">
-            <ul  ref={this.props.listRef}>
+            <ul  ref={listRef}>
               <li><a href="#page-2"><span className="menuIndex">01.</span><span className="menuText">vIsion</span></a></li>
               <li><a href="#page-3"><span className="menuIndex">02.</span><span className="menuText">about us</span></a></li>
               <li><a href="#page-4"><span className="menuIndex">03.</span><span className="menuText">blog</span></a></li>
@@ -81,10 +84,11 @@ class Page1 extends React.Component {
             </p>
           </div>
         </div>
-        <section></section>
+        <Video videoRef={videoRef}/>
       </div>
     );
   }
 }
 
-export default withNavScroll(Page1);
+
+export default withReactScrollWheelHandler(withNavScroll(Page1));

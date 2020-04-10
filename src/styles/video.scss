@@ -1,12 +1,16 @@
 .video {
-  @include absolute(50%, -50%, 100vh);
-  width: 30vw;
-  height: 30vh;
-  scroll-snap-align: start;
-  z-index: -1;
-  transition: all var(--duration, 0.7s) cubic-bezier(0.25, 1, 0.5, 1);
+  position: absolute;
+  left: 50%;
+  bottom: -100vh;
+  transform: translateX(-50%);
+  width: 0vw;
+  height: 0vh;
   display: flex;
   justify-content: center;
+
+  transition-property: bottom, height, width;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.5, 0.5, 1, 0.25);
 
   .video_back {
     position: relative;
@@ -17,7 +21,7 @@
     height: 100%;
 
     .arrow_scroll {
-      @include absolute(50%, -50%, auto, var(--dataY, 120%));
+      @include absolute(50%, -50%, auto, 120%);
       bottom: 0;
       padding: 1vw 0;
       opacity: 0;
@@ -36,20 +40,27 @@
         animation: arrow-animate 1.1s ease infinite var(--play, paused);
       }
     }
+    .arrow {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
   }
 
   @include mq(large) {
-    &{
+    & {
       position: relative !important;
       top: 0 !important;
       display: flex !important;
       height: 100vh;
       opacity: 1;
-      background:
-        #000e1a linear-gradient(to right, rgba(1, 155, 224, 0.34), rgba(1, 76, 137, 0.34));
+      background: #000e1a
+        linear-gradient(
+          to right,
+          rgba(1, 155, 224, 0.34),
+          rgba(1, 76, 137, 0.34)
+        );
       .video_back {
         width: calc(100% / 10 * 8);
-       
       }
     }
   }
@@ -78,3 +89,23 @@
     top: 0;
   }
 }
+
+.half-page {
+  width: 50vw;
+  height: 50vh;
+  bottom: 0;
+
+  transition-property: bottom, height, width;
+  transition-duration: 0.7s;
+  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.full-page {
+  width: 100vw;
+  height: 100vh;
+
+  transition-property: height, width;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
