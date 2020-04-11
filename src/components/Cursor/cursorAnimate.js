@@ -1,3 +1,5 @@
+import mobileAndTabletcheck from "../../onReady/mobileAndTabletcheck";
+
 let clientX = -100;
 let clientY = -100;
 
@@ -124,10 +126,11 @@ function initHoversAnimate(cursors) {
     new cursorMagnet(CLs);
 };
 
-window.addEventListener('load', () => {
-    const smallCursor = document.querySelector(".small_cursor");
-    const bigCursor = document.querySelector(".big_cursor");
-    const cursors = { smallCursor, bigCursor };
-    initP4DescSecScroll(cursors);
-    initHoversAnimate(cursors);
-})
+!mobileAndTabletcheck() &&
+    window.addEventListener('load', () => {
+        const smallCursor = document.querySelector(".small_cursor");
+        const bigCursor = document.querySelector(".big_cursor");
+        const cursors = { smallCursor, bigCursor };
+        initP4DescSecScroll(cursors);
+        initHoversAnimate(cursors);
+    })

@@ -1,3 +1,5 @@
+import './mobileAndTabletcheck'
+
 let top = 1500;
 let lastTop = 0;
 
