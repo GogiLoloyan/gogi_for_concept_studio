@@ -8,7 +8,7 @@ let lastY = 0;
 let isStuck = false;
 let stuckX, stuckY;
 
-function initP4DescSecScroll(cursors) {
+function initCursor(cursors) {
     /* 
         requestAnimationFrame-ը վարյկյանում 60 անգամ
         a-ն ավելացնում է մինչև b-ին հասնելը՝ այսինքն
@@ -131,6 +131,6 @@ function initHoversAnimate(cursors) {
         const smallCursor = document.querySelector(".small_cursor");
         const bigCursor = document.querySelector(".big_cursor");
         const cursors = { smallCursor, bigCursor };
-        initP4DescSecScroll(cursors);
+        initCursor(cursors);
         initHoversAnimate(cursors);
     })
